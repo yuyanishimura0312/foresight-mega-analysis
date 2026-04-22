@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foresight Mega-Analysis Dashboard | MIRA TUKU</title>
+<style>
+:root {
+  --miratuku-golden-orange: #F0A671;
+  --miratuku-light-beige: #F2C792;
+  --miratuku-warm-beige: #F1C189;
+  --miratuku-camel: #CEA26F;
+  --miratuku-pale-peach: #F8CDAC;
+  --miratuku-sand-gold: #F0BE83;
+  --miratuku-soft-salmon: #EFC4A4;
+  --miratuku-rose-peach: #F7BEA2;
+  --miratuku-terracotta: #DC8766;
+  --miratuku-amber-brown: #B07256;
+  --miratuku-warm-brown: #966D5E;
+  --miratuku-deep-brown: #7A4033;
+  --accent: #783c28;
+  --bg: #faf8f5;
+  --text: #1a1a1a;
+  --border: #e8e0d8;
+  --card-bg: #ffffff;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--accent), var(--deep-brown, #5a2d1a));
+  color: #fff;
+  padding: 2rem 2rem 1.5rem;
+  position: sticky; top: 0; z-index: 100;
+}
+.header h1 { font-size: 1.4rem; font-weight: 600; letter-spacing: 0.08em; }
+.header .subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 0.3rem; }
+.header .brand { font-size: 0.7rem; opacity: 0.6; letter-spacing: 0.15em; margin-top: 0.5rem; }
+
+.nav {
+  display: flex; gap: 0; border-bottom: 2px solid var(--border);
+  background: var(--card-bg);
+  position: sticky; top: 0; z-index: 99;
+}
+.nav button {
+  flex: 1; padding: 0.8rem 1rem; border: none; background: none;
+  font-size: 0.85rem; cursor: pointer; color: var(--warm-brown, #966D5E);
+  font-weight: 500; transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+.nav button:hover { background: #f5ece4; }
+.nav button.active {
+  color: var(--accent); border-bottom-color: var(--accent);
+  font-weight: 700;
+}
+
+.section { display: none; padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
+.section.active { display: block; }
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.card h2 {
+  font-size: 1.1rem; color: var(--accent); margin-bottom: 1rem;
+  padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+}
+.card h3 { font-size: 0.95rem; color: var(--amber-brown, #B07256); margin: 1rem 0 0.5rem; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; margin-bottom: 1.5rem;
+}
+.stat-card {
+  background: linear-gradient(135deg, #fef9f4, #fdf5ed);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.2rem; text-align: center;
+}
+.stat-card .number {
+  font-size: 2rem; font-weight: 700; color: var(--accent);
+}
+.stat-card .label {
+  font-size: 0.75rem; color: #888; margin-top: 0.3rem;
+}
+
+/* Timeline */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 3px; background: linear-gradient(to bottom,
+    var(--miratuku-golden-orange), var(--miratuku-terracotta),
+    var(--miratuku-amber-brown), var(--miratuku-deep-brown));
+}
+.era-block {
+  position: relative; margin-bottom: 1.5rem;
+  padding: 1rem 1.2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  border-left: 4px solid var(--miratuku-terracotta);
+}
+.era-block::before {
+  content: ''; position: absolute; left: -2.35rem; top: 1.2rem;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--miratuku-terracotta);
+  border: 2px solid var(--bg);
+}
+.era-block .era-title {
+  font-weight: 700; color: var(--accent); font-size: 0.95rem;
+}
+.era-block .era-period {
+  font-size: 0.75rem; color: #999; margin-bottom: 0.5rem;
+}
+.era-block .era-myth {
+  font-size: 0.82rem; color: var(--warm-brown, #966D5E);
+  font-style: italic; margin-bottom: 0.5rem;
+}
+.era-block .era-text {
+  font-size: 0.82rem; line-height: 1.6;
+}
+
+/* Paradigm shift markers */
+.shift-marker {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  background: var(--miratuku-deep-brown);
+  color: #fff; border-radius: 3px; font-size: 0.7rem;
+  margin: 0.2rem 0.3rem 0.2rem 0;
+}
+
+/* Cluster grid */
+.cluster-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+.cluster-card {
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 1rem;
+  background: var(--card-bg);
+  transition: transform 0.15s;
+}
+.cluster-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+.cluster-card .cluster-name {
+  font-weight: 700; color: var(--accent); font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+.cluster-card .cluster-count {
+  font-size: 0.75rem; color: #999; margin-bottom: 0.5rem;
+}
+.cluster-card .signal-list { font-size: 0.78rem; }
+.cluster-card .signal-item {
+  padding: 0.3rem 0; border-bottom: 1px solid #f0ebe5;
+}
+.cluster-card .signal-item:last-child { border-bottom: none; }
+.signal-score {
+  display: inline-block; padding: 0.1rem 0.4rem;
+  background: var(--miratuku-pale-peach);
+  border-radius: 3px; font-size: 0.7rem; font-weight: 600;
+  color: var(--accent);
+}
+
+/* Voros cone grid */
+.cone-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 0;
+}
+.cone-header {
+  text-align: center; padding: 0.6rem;
+  font-weight: 700; font-size: 0.85rem;
+  border: 1px solid var(--border);
+}
+.cone-header.desirable { background: #f0f7ee; color: #3a7528; }
+.cone-header.undesirable { background: #fdf0ee; color: #a03020; }
+.cone-row-label {
+  grid-column: 1 / -1;
+  padding: 0.5rem 1rem;
+  font-weight: 700; font-size: 0.85rem;
+  color: var(--accent);
+  background: #fef9f4;
+  border: 1px solid var(--border);
+}
+.cone-cell {
+  border: 1px solid var(--border);
+  padding: 0.8rem;
+  min-height: 120px;
+  font-size: 0.78rem;
+}
+.cone-cell.desirable { background: #fafdf9; }
+.cone-cell.undesirable { background: #fefafa; }
+.cone-cell .cell-count {
+  font-weight: 700; font-size: 1.2rem; color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+.cone-domain {
+  display: inline-block; padding: 0.1rem 0.4rem;
+  margin: 0.1rem; border-radius: 3px; font-size: 0.7rem;
+}
+
+/* Layer colors for CLA */
+.layer-litany { border-left-color: var(--miratuku-golden-orange); }
+.layer-systemic { border-left-color: var(--miratuku-camel); }
+.layer-worldview { border-left-color: var(--miratuku-terracotta); }
+.layer-myth { border-left-color: var(--miratuku-deep-brown); }
+
+.layer-tag {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  border-radius: 3px; font-size: 0.7rem; font-weight: 600;
+  margin-right: 0.3rem;
+}
+.layer-tag.litany { background: #fef3e8; color: #b87730; }
+.layer-tag.systemic { background: #f7efe5; color: #9a7a50; }
+.layer-tag.worldview { background: #f5e8dd; color: #a0614a; }
+.layer-tag.myth { background: #f0e0d5; color: #7a4033; }
+
+.pestle-tag {
+  display: inline-block; padding: 0.1rem 0.35rem;
+  border-radius: 3px; font-size: 0.65rem; margin: 0.1rem;
+}
+.pestle-P { background: #fde8e8; color: #c33; }
+.pestle-E { background: #fef3e0; color: #b87730; }
+.pestle-S { background: #e8f5e0; color: #3a7528; }
+.pestle-T { background: #e0eef8; color: #2865a0; }
+.pestle-L { background: #f0e0f8; color: #7030a0; }
+.pestle-En { background: #e0f0f0; color: #1a7a6a; }
+
+.bar {
+  display: flex; height: 24px; border-radius: 4px; overflow: hidden;
+  margin: 0.3rem 0;
+}
+.bar-segment { display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; color: #fff; font-weight: 600; min-width: 2px; }
+
+.toggle-btn {
+  background: none; border: 1px solid var(--border);
+  padding: 0.3rem 0.7rem; border-radius: 4px; cursor: pointer;
+  font-size: 0.75rem; color: var(--accent);
+  margin-top: 0.5rem;
+}
+.toggle-btn:hover { background: #fef3e8; }
+
+.collapsible { display: none; margin-top: 0.5rem; }
+.collapsible.open { display: block; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+th { text-align: left; padding: 0.4rem; background: #fef9f4; color: var(--accent);
+     border-bottom: 2px solid var(--border); font-weight: 600; }
+td { padding: 0.4rem; border-bottom: 1px solid #f0ebe5; }
+tr:hover td { background: #fefcfa; }
+
+.current-position {
+  background: linear-gradient(135deg, #fef9f4, #fdf0e8);
+  border: 2px solid var(--miratuku-terracotta);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.current-position h2 { border-bottom-color: var(--miratuku-terracotta); }
+
+/* Print styles */
+@media print {
+  .header { position: static; }
+  .nav { display: none; }
+  .section { display: block !important; page-break-before: always; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>FORESIGHT MEGA-ANALYSIS DASHBOARD</h1>
+  <div class="subtitle">CLA構造分析 + シグナル網羅的抽出 + Vorosフューチャーコーン8象限分類</div>
+  <div class="brand">MIRA TUKU &mdash; 2026-04-23</div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showSection('overview')">Overview</button>
+  <button onclick="showSection('cla')">Part 1: CLA分析</button>
+  <button onclick="showSection('signals')">Part 2: シグナル</button>
+  <button onclick="showSection('voros')">Part 3: Voros Cone</button>
+</div>
+
+<div id="overview" class="section active">
+  <div class="stats-row" id="overview-stats"></div>
+  <div class="card" id="overview-summary"></div>
+</div>
+
+<div id="cla" class="section">
+  <div class="card" id="cla-current"></div>
+  <div class="card" id="cla-timeline"></div>
+  <div class="card" id="cla-shifts"></div>
+  <div class="card" id="cla-myths"></div>
+  <div class="card" id="cla-keywords"></div>
+</div>
+
+<div id="signals" class="section">
+  <div class="stats-row" id="signal-stats"></div>
+  <div class="card" id="signal-overview"></div>
+  <div id="signal-clusters"></div>
+</div>
+
+<div id="voros" class="section">
+  <div class="stats-row" id="voros-stats"></div>
+  <div class="card" id="voros-cone"></div>
+  <div class="card" id="voros-domains"></div>
+  <div class="card" id="voros-trends"></div>
+</div>
+
+<script>
+// Data will be loaded from external file or embedded
+let DATA = null;
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleCollapsible(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+const CI = [
+  '#F0A671','#F2C792','#F1C189','#CEA26F','#F8CDAC','#F0BE83',
+  '#EFC4A4','#F7BEA2','#DC8766','#B07256','#966D5E','#7A4033'
+];
+
+function pestleTag(cat) {
+  const map = {
+    '政治': ['P','pestle-P'], 'Political': ['P','pestle-P'],
+    '経済': ['E','pestle-E'], 'Economic': ['E','pestle-E'],
+    '社会': ['S','pestle-S'], 'Social': ['S','pestle-S'],
+    '技術': ['T','pestle-T'], 'Technological': ['T','pestle-T'],
+    '法律': ['L','pestle-L'], 'Legal': ['L','pestle-L'],
+    '環境': ['En','pestle-En'], 'Environmental': ['En','pestle-En'],
+  };
+  const m = map[cat] || [cat.charAt(0), 'pestle-P'];
+  return `<span class="pestle-tag ${m[1]}">${m[0]}</span>`;
+}
+
+function barChart(data, colors) {
+  const total = Object.values(data).reduce((a,b) => a+b, 0);
+  if (!total) return '';
+  let html = '<div class="bar">';
+  let i = 0;
+  for (const [k, v] of Object.entries(data)) {
+    const pct = (v / total * 100);
+    if (pct > 3) {
+      html += `<div class="bar-segment" style="width:${pct}%;background:${colors[i % colors.length]}" title="${k}: ${v}">${k.replace(/[^A-Za-zぁ-ん]/g,'').slice(0,4)}</div>`;
+    } else if (pct > 0) {
+      html += `<div class="bar-segment" style="width:${pct}%;background:${colors[i % colors.length]}" title="${k}: ${v}"></div>`;
+    }
+    i++;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderOverview() {
+  const c = DATA.cla, s = DATA.signals, f = DATA.foresight;
+
+  document.getElementById('overview-stats').innerHTML = `
+    <div class="stat-card"><div class="number">${c.stats.total_periods}</div><div class="label">CLA分析期間 (36年間)</div></div>
+    <div class="stat-card"><div class="number">${c.stats.shift_count}</div><div class="label">パラダイムシフト</div></div>
+    <div class="stat-card"><div class="number">${s.total_signals}</div><div class="label">弱いシグナル</div></div>
+    <div class="stat-card"><div class="number">${Object.keys(s.clusters).length}</div><div class="label">シグナル領域</div></div>
+    <div class="stat-card"><div class="number">${f.total_predictions.toLocaleString()}</div><div class="label">フォーサイト予測</div></div>
+    <div class="stat-card"><div class="number">8</div><div class="label">Voros象限</div></div>
+  `;
+
+  const qc = f.quadrant_counts;
+  document.getElementById('overview-summary').innerHTML = `
+    <h2>解析概要</h2>
+    <p>本ダッシュボードは、ミラツクが保有する未来洞察データ群を統合した大規模解析の結果です。3つの柱で構成されています。</p>
+    <h3>Part 1: CLA（因果階層分析）による現代社会の立ち位置</h3>
+    <p>1990年から2026年までの36年間、6つのPESTLEカテゴリ × 6つのCLA層で構造化された${c.stats.total_periods}期間の分析データに基づき、現代社会が置かれている構造的位置を確認します。${c.stats.shift_count}個のパラダイムシフトを経て、現在は「複合危機と文明的転換」の時代に位置しています。</p>
+    <h3>Part 2: シグナルの網羅的抽出とボトムアップ領域分類</h3>
+    <p>${s.total_signals}件の弱いシグナルをボトムアップでクラスタリングし、${Object.keys(s.clusters).length}の領域を設定しました。最大クラスタは「地政学・権力」(${s.clusters['地政学・権力']?.count || 0}件)、次いで「AI・知能・認知」(${s.clusters['AI・知能・認知']?.count || 0}件)です。</p>
+    <h3>Part 3: Vorosフューチャーコーン8象限分類</h3>
+    <p>${f.total_predictions.toLocaleString()}件の外部フォーサイト予測を、Vorosのフューチャーコーン（Projected / Probable / Plausible / Possible）× 望ましさ（Desirable / Undesirable）の8象限に分類しました。</p>
+    <table>
+      <tr><th></th><th>Desirable</th><th>Undesirable</th></tr>
+      <tr><td><strong>Projected</strong> (予測)</td><td>${qc.projected_desirable}</td><td>${qc.projected_undesirable}</td></tr>
+      <tr><td><strong>Probable</strong> (蓋然的)</td><td>${qc.probable_desirable}</td><td>${qc.probable_undesirable}</td></tr>
+      <tr><td><strong>Plausible</strong> (もっともらしい)</td><td>${qc.plausible_desirable}</td><td>${qc.plausible_undesirable}</td></tr>
+      <tr><td><strong>Possible</strong> (可能)</td><td>${qc.possible_desirable}</td><td>${qc.possible_undesirable}</td></tr>
+    </table>
+  `;
+}
+
+function renderCLA() {
+  const c = DATA.cla;
+
+  // Current Position
+  const cp = c.current_position;
+  let cpHtml = '<h2>現在の立ち位置 (2025-Q4 ~ 2026-Q2)</h2>';
+  cpHtml += '<p>直近3四半期のCLA分析から、現代社会の構造的位置を6つのPESTLEカテゴリ × 4つのCLA層で確認します。</p>';
+
+  const layerNames = {litany: '表層現象', systemic: '構造的原因', worldview: '世界観', myth: '神話・メタファー'};
+  const layerClasses = {litany: 'litany', systemic: 'systemic', worldview: 'worldview', myth: 'myth'};
+
+  for (const [period, pdata] of Object.entries(cp)) {
+    cpHtml += `<h3>${period}</h3>`;
+    for (const [cat, layers] of Object.entries(pdata.categories || {})) {
+      cpHtml += `<div style="margin-bottom:0.8rem;">`;
+      cpHtml += `<strong>${pestleTag(cat)} ${cat}</strong>`;
+      for (const [layer, text] of Object.entries(layers)) {
+        if (['litany','systemic','worldview','myth'].includes(layer) && text) {
+          cpHtml += `<div style="margin:0.3rem 0 0.3rem 1rem; padding:0.3rem 0.5rem; border-left:3px solid ${CI[['litany','systemic','worldview','myth'].indexOf(layer)*3]}; font-size:0.78rem;">`;
+          cpHtml += `<span class="layer-tag ${layerClasses[layer]}">${layerNames[layer]}</span> ${text.slice(0, 200)}...`;
+          cpHtml += `</div>`;
+        }
+      }
+      cpHtml += `</div>`;
+    }
+  }
+  document.getElementById('cla-current').innerHTML = cpHtml;
+  document.getElementById('cla-current').className = 'current-position';
+
+  // Timeline
+  let tlHtml = '<h2>CLA時代区分タイムライン (1990-2026)</h2>';
+  tlHtml += '<div class="timeline">';
+  const eraColors = [CI[0], CI[2], CI[4], CI[6], CI[8], CI[11]];
+  c.eras.forEach((era, i) => {
+    const synthesis = c.syntheses.find(s => s.period === era.start);
+    const eraShifts = c.paradigm_shifts.filter(s => {
+      const sp = s.period.replace(/年.*$/, '').split('-')[0];
+      return sp >= era.start && sp <= era.end;
+    });
+
+    tlHtml += `<div class="era-block" style="border-left-color:${eraColors[i]}">`;
+    tlHtml += `<div class="era-period">${era.start} - ${era.end}</div>`;
+    tlHtml += `<div class="era-title">${era.name}</div>`;
+    tlHtml += `<div class="era-myth">${era.myth}</div>`;
+    if (eraShifts.length) {
+      tlHtml += `<div style="margin:0.5rem 0">`;
+      eraShifts.forEach(s => {
+        tlHtml += `<span class="shift-marker">${s.name.slice(0,20)}</span>`;
+      });
+      tlHtml += `</div>`;
+    }
+    if (synthesis) {
+      tlHtml += `<div class="era-text">${synthesis.synthesis.slice(0,300)}...</div>`;
+    }
+    tlHtml += `<button class="toggle-btn" onclick="toggleCollapsible('era-detail-${i}')">詳細を表示</button>`;
+    tlHtml += `<div class="collapsible" id="era-detail-${i}">`;
+
+    // Show syntheses for this era
+    const eraSyntheses = c.syntheses.filter(s => s.period >= era.start && s.period <= era.end);
+    eraSyntheses.forEach(s => {
+      tlHtml += `<div style="margin:0.5rem 0; padding:0.5rem; background:#fef9f4; border-radius:4px; font-size:0.78rem;">`;
+      tlHtml += `<strong>${s.period}</strong>: ${s.synthesis.slice(0,400)}`;
+      tlHtml += `</div>`;
+    });
+    tlHtml += `</div></div>`;
+  });
+  tlHtml += '</div>';
+  document.getElementById('cla-timeline').innerHTML = tlHtml;
+
+  // Paradigm Shifts
+  let shiftHtml = '<h2>パラダイムシフト一覧</h2>';
+  shiftHtml += '<table><tr><th>期間</th><th>地域</th><th>名称</th><th>説明</th></tr>';
+  c.paradigm_shifts.forEach(s => {
+    shiftHtml += `<tr><td>${s.period}</td><td>${s.region}</td><td><strong>${s.name}</strong></td><td style="font-size:0.75rem">${s.description.slice(0,200)}...</td></tr>`;
+  });
+  shiftHtml += '</table>';
+  document.getElementById('cla-shifts').innerHTML = shiftHtml;
+
+  // Myths Timeline
+  let mythHtml = '<h2>神話・メタファーの変遷</h2>';
+  mythHtml += '<p>各時代を支配した深層の物語（Myth/Metaphor）の変遷を追います。</p>';
+  c.myths_timeline.forEach((m, i) => {
+    mythHtml += `<div style="margin:0.8rem 0; padding:0.8rem; border-left:4px solid ${CI[i % 12]}; background:${i % 2 === 0 ? '#fef9f4' : '#fff'}; border-radius:0 6px 6px 0;">`;
+    mythHtml += `<div style="font-size:0.75rem; color:#999">${m.region === 'japan' ? 'Japan' : 'Global'}</div>`;
+    mythHtml += `<div style="font-weight:700; color:var(--accent); margin:0.2rem 0">${m.era}</div>`;
+    mythHtml += `<div style="font-size:0.82rem">${m.myth}</div>`;
+    mythHtml += `</div>`;
+  });
+  document.getElementById('cla-myths').innerHTML = mythHtml;
+
+  // Keywords
+  let kwHtml = '<h2>CLA層別キーワード頻度（時代区分別）</h2>';
+  const kwData = c.keyword_top_by_era;
+  for (const [eraName, layers] of Object.entries(kwData)) {
+    kwHtml += `<h3>${eraName}</h3>`;
+    kwHtml += `<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:0.5rem;">`;
+    for (const [layer, kws] of Object.entries(layers)) {
+      kwHtml += `<div style="font-size:0.75rem; padding:0.5rem; background:#fef9f4; border-radius:4px;">`;
+      kwHtml += `<span class="layer-tag ${layerClasses[layer] || ''}">${layerNames[layer] || layer}</span><br>`;
+      kws.slice(0,10).forEach(([kw, freq]) => {
+        kwHtml += `<span style="display:inline-block; margin:0.1rem; padding:0.1rem 0.3rem; background:#f0e8df; border-radius:3px; font-size:0.7rem;">${kw} (${freq})</span>`;
+      });
+      kwHtml += `</div>`;
+    }
+    kwHtml += `</div>`;
+  }
+  document.getElementById('cla-keywords').innerHTML = kwHtml;
+}
+
+function renderSignals() {
+  const s = DATA.signals;
+
+  // Stats
+  const clusters = Object.entries(s.clusters).sort((a,b) => b[1].count - a[1].count);
+  document.getElementById('signal-stats').innerHTML = `
+    <div class="stat-card"><div class="number">${s.total_signals}</div><div class="label">総シグナル数</div></div>
+    <div class="stat-card"><div class="number">${clusters.length}</div><div class="label">ボトムアップ領域数</div></div>
+    <div class="stat-card"><div class="number">${clusters[0]?.[1]?.count || 0}</div><div class="label">最大クラスタ: ${clusters[0]?.[0] || ''}</div></div>
+    <div class="stat-card"><div class="number">${clusters.reduce((a, [,v]) => a + (v.impact_dist?.high || 0), 0)}</div><div class="label">高インパクトシグナル</div></div>
+  `;
+
+  // Overview bar
+  let ovHtml = '<h2>シグナル領域分布</h2>';
+  const clusterCounts = {};
+  clusters.forEach(([name, data]) => { clusterCounts[name] = data.count; });
+  ovHtml += barChart(clusterCounts, CI);
+  ovHtml += '<table><tr><th>領域</th><th>件数</th><th>平均スコア</th><th>インパクト分布</th><th>PESTLE分布</th></tr>';
+  clusters.forEach(([name, data]) => {
+    const impacts = Object.entries(data.impact_dist || {}).map(([k,v]) => `${k}:${v}`).join(', ');
+    const pestle = Object.entries(data.pestle_dist || {}).sort((a,b) => b[1]-a[1]).slice(0,4).map(([k,v]) => pestleTag(k)).join('');
+    ovHtml += `<tr><td><strong>${name}</strong></td><td>${data.count}</td><td>${data.avg_composite}</td><td style="font-size:0.7rem">${impacts}</td><td>${pestle}</td></tr>`;
+  });
+  ovHtml += '</table>';
+  document.getElementById('signal-overview').innerHTML = ovHtml;
+
+  // Cluster detail cards
+  let clHtml = '<div class="cluster-grid">';
+  clusters.forEach(([name, data]) => {
+    clHtml += `<div class="cluster-card">`;
+    clHtml += `<div class="cluster-name">${name}</div>`;
+    clHtml += `<div class="cluster-count">${data.count}件 | 平均スコア: ${data.avg_composite}</div>`;
+    clHtml += `<div class="signal-list">`;
+    (data.top_signals || []).forEach(sig => {
+      clHtml += `<div class="signal-item">`;
+      clHtml += `<span class="signal-score">${sig.composite}</span> `;
+      clHtml += `${sig.name.slice(0,50)}`;
+      clHtml += `</div>`;
+    });
+    clHtml += `</div></div>`;
+  });
+  clHtml += '</div>';
+  document.getElementById('signal-clusters').innerHTML = clHtml;
+}
+
+function renderVoros() {
+  const f = DATA.foresight;
+  const qc = f.quadrant_counts;
+
+  // Stats
+  const totalClassified = Object.values(qc).reduce((a,b) => a+b, 0);
+  document.getElementById('voros-stats').innerHTML = `
+    <div class="stat-card"><div class="number">${f.total_predictions.toLocaleString()}</div><div class="label">総予測数</div></div>
+    <div class="stat-card"><div class="number">${totalClassified.toLocaleString()}</div><div class="label">8象限分類済み</div></div>
+    <div class="stat-card"><div class="number">${f.desirability_distribution.desirable.toLocaleString()}</div><div class="label">望ましい予測</div></div>
+    <div class="stat-card"><div class="number">${f.desirability_distribution.undesirable.toLocaleString()}</div><div class="label">望ましくない予測</div></div>
+  `;
+
+  // Voros Cone Grid
+  const layers = [
+    {key: 'projected', name: 'Projected (予測)', desc: '現在のトレンドが継続した場合の帰結'},
+    {key: 'probable', name: 'Probable (蓋然的)', desc: '現在の知識に基づき起こりそうなこと'},
+    {key: 'plausible', name: 'Plausible (もっともらしい)', desc: '現在の理解の範囲で起こりうること'},
+    {key: 'possible', name: 'Possible (可能)', desc: '物理法則に反しない限りのあらゆる可能性'},
+  ];
+
+  let coneHtml = '<h2>Vorosフューチャーコーン 8象限分類</h2>';
+  coneHtml += '<p>Sohail Inayatullahの理論的枠組みとJoseph Vorosのフューチャーコーンを参考に、外部フォーサイト収集結果を予測確度 × 望ましさの8象限に分類しました。</p>';
+
+  coneHtml += '<div class="cone-grid">';
+  coneHtml += '<div class="cone-header desirable">Desirable (望ましい)</div>';
+  coneHtml += '<div class="cone-header undesirable">Undesirable (望ましくない)</div>';
+
+  layers.forEach(layer => {
+    const dKey = `${layer.key}_desirable`;
+    const uKey = `${layer.key}_undesirable`;
+    const dData = f.quadrants[dKey] || {total: 0, themes: {}};
+    const uData = f.quadrants[uKey] || {total: 0, themes: {}};
+
+    coneHtml += `<div class="cone-row-label">${layer.name} <span style="font-weight:400;font-size:0.75rem;color:#999">— ${layer.desc}</span></div>`;
+
+    // Desirable cell
+    coneHtml += `<div class="cone-cell desirable">`;
+    coneHtml += `<div class="cell-count">${dData.total}件</div>`;
+    const dThemes = Object.entries(dData.themes || {}).sort((a,b) => b[1].count - a[1].count);
+    dThemes.forEach(([name, td]) => {
+      const pct = (td.count / Math.max(dData.total, 1) * 100).toFixed(0);
+      coneHtml += `<span class="cone-domain" style="background:#e8f5e0;color:#3a7528">${name} (${td.count})</span>`;
+    });
+    if (dThemes.length > 0) {
+      coneHtml += `<div style="margin-top:0.5rem;font-size:0.72rem;color:#666;">`;
+      const topTheme = dThemes[0];
+      if (topTheme[1].samples?.length) {
+        coneHtml += `<em>${topTheme[1].samples[0].slice(0,120)}...</em>`;
+      }
+      coneHtml += `</div>`;
+    }
+    coneHtml += `</div>`;
+
+    // Undesirable cell
+    coneHtml += `<div class="cone-cell undesirable">`;
+    coneHtml += `<div class="cell-count">${uData.total}件</div>`;
+    const uThemes = Object.entries(uData.themes || {}).sort((a,b) => b[1].count - a[1].count);
+    uThemes.forEach(([name, td]) => {
+      coneHtml += `<span class="cone-domain" style="background:#fde8e8;color:#a03020">${name} (${td.count})</span>`;
+    });
+    if (uThemes.length > 0) {
+      coneHtml += `<div style="margin-top:0.5rem;font-size:0.72rem;color:#666;">`;
+      const topTheme = uThemes[0];
+      if (topTheme[1].samples?.length) {
+        coneHtml += `<em>${topTheme[1].samples[0].slice(0,120)}...</em>`;
+      }
+      coneHtml += `</div>`;
+    }
+    coneHtml += `</div>`;
+  });
+  coneHtml += '</div>';
+  document.getElementById('voros-cone').innerHTML = coneHtml;
+
+  // Domain distribution
+  let domHtml = '<h2>ドメイン別予測分布</h2>';
+  domHtml += barChart(f.domain_distribution, CI);
+  domHtml += '<table><tr><th>ドメイン</th><th>件数</th><th>比率</th></tr>';
+  for (const [domain, count] of Object.entries(f.domain_distribution)) {
+    const pct = (count / f.total_predictions * 100).toFixed(1);
+    domHtml += `<tr><td>${domain}</td><td>${count.toLocaleString()}</td><td>${pct}%</td></tr>`;
+  }
+  domHtml += '</table>';
+
+  // Quadrant detail per domain
+  domHtml += '<h3>象限別ドメイン内訳</h3>';
+  for (const [qname, qdata] of Object.entries(f.quadrants)) {
+    if (qdata.total === 0) continue;
+    const [voros, desir] = qname.split('_');
+    domHtml += `<div style="margin:0.8rem 0; padding:0.5rem; background:${desir === 'desirable' ? '#fafdf9' : '#fefafa'}; border-radius:4px; border-left:3px solid ${desir === 'desirable' ? '#3a7528' : '#a03020'}">`;
+    domHtml += `<strong>${voros} × ${desir}</strong> (${qdata.total}件)`;
+    domHtml += `<div style="font-size:0.75rem; margin-top:0.3rem;">`;
+    const themes = Object.entries(qdata.themes || {}).sort((a,b) => b[1].count - a[1].count);
+    themes.slice(0, 8).forEach(([name, td]) => {
+      domHtml += `<span style="display:inline-block; margin:0.1rem; padding:0.15rem 0.4rem; background:${desir === 'desirable' ? '#e8f5e0' : '#fde8e8'}; border-radius:3px; font-size:0.7rem;">${name}: ${td.count}</span>`;
+    });
+    domHtml += `</div></div>`;
+  }
+  document.getElementById('voros-domains').innerHTML = domHtml;
+
+  // Trends
+  let trendHtml = '<h2>主要トレンド (上位30)</h2>';
+  trendHtml += '<table><tr><th>トレンド</th><th>タイプ</th><th>言及数</th></tr>';
+  (f.trends_top || []).forEach(t => {
+    trendHtml += `<tr><td>${t.name}</td><td>${t.type || ''}</td><td>${t.mentions}</td></tr>`;
+  });
+  trendHtml += '</table>';
+
+  // Sources
+  trendHtml += '<h3>主要情報ソース</h3>';
+  trendHtml += '<table><tr><th>ソース</th><th>タイプ</th><th>レポート数</th></tr>';
+  (f.sources_top || []).forEach(s => {
+    trendHtml += `<tr><td>${s.name}</td><td>${s.type}</td><td>${s.reports}</td></tr>`;
+  });
+  trendHtml += '</table>';
+  document.getElementById('voros-trends').innerHTML = trendHtml;
+}
+
+// Load data and render
+fetch('data/analysis.json')
+  .then(r => r.json())
+  .then(data => {
+    DATA = data;
+    renderOverview();
+    renderCLA();
+    renderSignals();
+    renderVoros();
+  })
+  .catch(e => {
+    console.error('Failed to load data:', e);
+    document.getElementById('overview').innerHTML = '<div class="card"><h2>Error</h2><p>データファイルの読み込みに失敗しました。ローカルサーバー経由でアクセスしてください。</p><code>cd ~/projects/research/foresight-mega-analysis && python3 -m http.server 8080</code></div>';
+  });
+</script>
+</body>
+</html>

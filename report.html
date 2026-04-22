@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未来洞察大規模解析レポート | MIRA TUKU</title>
+<style>
+:root {
+  --accent: #783c28;
+  --bg: #faf8f5;
+  --text: #1a1a1a;
+  --border: #e8e0d8;
+  --card-bg: #ffffff;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-family);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.report-header {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-bottom: 3px solid var(--accent);
+  margin-bottom: 3rem;
+}
+.report-header h1 {
+  font-size: 1.6rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.report-header .subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+.report-header .meta {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 1rem;
+}
+h2 {
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e8e0d8;
+}
+h3 {
+  font-size: 1.05rem;
+  color: #B07256;
+  margin: 1.8rem 0 0.8rem;
+}
+h4 {
+  font-size: 0.95rem;
+  color: #966D5E;
+  margin: 1.2rem 0 0.5rem;
+}
+p { margin-bottom: 1rem; font-size: 0.92rem; }
+.highlight {
+  background: linear-gradient(135deg, #fef9f4, #fdf0e8);
+  border: 1px solid #e8dcd0;
+  border-left: 4px solid var(--accent);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+.highlight p { margin-bottom: 0.5rem; }
+.highlight p:last-child { margin-bottom: 0; }
+blockquote {
+  border-left: 3px solid #DC8766;
+  padding: 0.8rem 1.2rem;
+  margin: 1rem 0;
+  background: #fefcfa;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: #555;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.82rem;
+}
+th {
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  background: #fef9f4;
+  color: var(--accent);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+}
+td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid #f0ebe5;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.grid-cell {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.85rem;
+}
+.label {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+.label-era { background: #f0e0d5; color: #7A4033; }
+.label-shift { background: #7A4033; color: #fff; }
+.label-signal { background: #F0BE83; color: #5a2d1a; }
+.label-desirable { background: #e8f5e0; color: #3a7528; }
+.label-undesirable { background: #fde8e8; color: #a03020; }
+.toc {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+.toc h3 { margin-top: 0; }
+.toc ol { padding-left: 1.5rem; }
+.toc li { margin: 0.3rem 0; font-size: 0.88rem; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.footnote { font-size: 0.78rem; color: #888; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+@media print {
+  body { max-width: 100%; padding: 1rem; }
+  .report-header { padding: 2rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <h1>未来洞察大規模解析レポート</h1>
+  <div class="subtitle">CLA構造分析 / シグナル網羅的抽出 / Vorosフューチャーコーン8象限分類</div>
+  <div class="meta">
+    NPO法人ミラツク | MIRA TUKU<br>
+    2026年4月23日<br>
+    データソース: CLA 36年間 (57期間) / 弱いシグナル 411件 / フォーサイト予測 22,546件
+  </div>
+</div>
+
+<div class="toc">
+  <h3>目次</h3>
+  <ol>
+    <li><a href="#exec">エグゼクティブサマリー</a></li>
+    <li><a href="#part1">Part 1: CLA分析 &mdash; 現代社会の構造的立ち位置</a></li>
+    <li><a href="#part2">Part 2: シグナルの網羅的抽出とボトムアップ領域分類</a></li>
+    <li><a href="#part3">Part 3: Vorosフューチャーコーン8象限分類</a></li>
+    <li><a href="#synthesis">統合考察</a></li>
+    <li><a href="#method">方法論</a></li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="exec">エグゼクティブサマリー</h2>
+
+<p>本レポートは、ミラツクが保有する複数の未来洞察データベースを統合的に解析し、現代社会の構造的位置づけを明らかにした大規模分析の報告書である。解析は3つの柱から構成される。</p>
+
+<div class="highlight">
+<p><strong>主要な知見:</strong></p>
+<p>1. 現代社会（2026年Q2時点）は、戦後リベラル国際秩序の決定的な衰退局面に位置している。CLA（因果階層分析）の36年間データは、1990年の冷戦終結から始まった「歴史の終わり」の物語が段階的に解体され、2020年以降は「複合危機と文明的転換」の時代に突入したことを示している。</p>
+<p>2. 411件の弱いシグナルをボトムアップでクラスタリングした結果、12の領域が浮上した。最大の領域は「地政学・権力」（140件）であり、次いで「AI・知能・認知」（51件）、「法・ガバナンス」（49件）が続く。シグナルの質的分析は、権力の再編とテクノロジーの統治化が現代の支配的動態であることを示唆している。</p>
+<p>3. 22,546件の外部フォーサイト予測をVorosのフューチャーコーンに基づく8象限に分類した結果、最大の集積はPlausible×Desirable象限（2,592件）に見られ、テクノロジーとガバナンスの改善に対する期待が突出している。一方、Undesirable側の予測はPlausible象限に240件が集中し、環境・ガバナンス領域のリスクが際立っている。</p>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="part1">Part 1: CLA分析 &mdash; 現代社会の構造的立ち位置</h2>
+
+<h3>1.1 分析の枠組み</h3>
+
+<p>本分析ではSohail Inayatullahの因果階層分析（Causal Layered Analysis: CLA）を用いる。CLAは社会現象を4つの深度で階層化する手法であり、表層の出来事（Litany）から構造的原因（Systemic Causes）、暗黙の世界観（Worldview）、そして最深層の神話・メタファー（Myth/Metaphor）まで掘り下げることで、現象の根本的な構造を可視化する。</p>
+
+<p>本解析で用いたデータは、1990年から2026年Q2までの36年間・57期間にわたるCLA分析記録であり、各期間について6つのPESTLEカテゴリ（政治・経済・社会・技術・法律・環境）ごとに6つのCLA層が記述されている。このデータに基づき、10件のパラダイムシフト、53件の時代統合分析、および10件の神話変遷記録が蓄積されている。</p>
+
+<h3>1.2 6つの時代区分と構造的変遷</h3>
+
+<p>36年間のCLAデータは、以下の6つの時代区分に構造化される。</p>
+
+<h4><span class="label label-era">1990-1995</span> 冷戦終結とグローバリズムの勃興</h4>
+
+<p>冷戦の終結は、カテゴリ横断的なシステム転換をもたらした。フランシス・フクヤマの「歴史の終わり」テーゼに象徴されるように、自由民主主義と市場経済の普遍的勝利という直線的進歩の神話が確立された時代である。しかしこの表層的な楽観の下で、旧ソ連圏の混乱、民族紛争の再燃、そしてグローバル化による格差の種子が同時に蒔かれていた。日本ではバブル崩壊が「終わりなき経済成長」の神話を根底から揺るがし、「護送船団から市場メカニズムへ」というパラダイムシフトが進行した。</p>
+
+<blockquote>深層の神話: 「歴史の終わり」「民主主義と市場経済の普遍的勝利」「インターネットが民主化をもたらす」「技術による人類解放」という線形的進歩の物語が支配的であった。</blockquote>
+
+<h4><span class="label label-era">1996-2001</span> 帝国的秩序と文明の衝突</h4>
+
+<p>アジア金融危機、ロシア危機、そして9.11テロを通じて、グローバル化による統一の不可能性が顕在化した時代である。米国は軍事的一極支配を強化し、「テロとの戦い」という新たな二項対立的物語を構築した。この時期の世界観は「米国中心の一極支配による秩序」と「テロと暴力による脅威」という対立構造によって支配されていた。技術的にはインターネットバブルとその崩壊が、テクノ楽観主義の最初の修正を迫った。</p>
+
+<h4><span class="label label-era">2002-2008</span> 多極化と金融危機</h4>
+
+<p>イラク戦争の失敗と中国の台頭は、米国中心的秩序の相対化を決定づけた。2008年の世界金融危機は、資本主義・西欧近代化・技術楽観主義という3つの支配的神話を同時に揺るがした分岐点であった。この時期に「成長神話の破綻」と「BRICs台頭」という2つの対立するナラティブが並立し、近代的進歩の直線性に対する根本的な疑問が社会の深層に浸透し始めた。日本では「成長神話から脱成長的価値観への転換」が、リーマンショックと東日本大震災の二重の衝撃によって加速された。</p>
+
+<h4><span class="label label-era">2009-2015</span> デジタル支配とリベラル秩序の動揺</h4>
+
+<p>Google、Facebook、Amazonといったテクノロジー・プラットフォームが新形式の支配を確立した時期である。「プラットフォームによる民主化」と「個人監視の無限化」が共存するという矛盾が、この時代の構造的特徴であった。経済的にはグローバルな統合から地域化への転換が始まり、社会的にはポピュリズムの胎動が顕在化した。アラブの春に象徴される民主化への期待が権力闘争に敗北する過程は、テクノロジーの民主化力に対する幻滅を象徴している。</p>
+
+<h4><span class="label label-era">2016-2019</span> ポピュリズムと秩序の断片化</h4>
+
+<p>2016年は複数のシステムが同時に正当性の危機に直面した転換点であった。Brexit、トランプ当選、各地のポピュリズム台頭は、グローバル化の「勝者」と「敗者」の分裂を表面化させた。「ポスト真実」という概念の浸透は、啓蒙主義的な「理性による合意形成」という近代の基盤そのものへの挑戦を意味していた。この時期の神話変遷は「デジタル支配とリベラル民主主義の危機」として記録されており、「グローバルな経済統合から地域化へ」の転換が不可逆的に進行した。</p>
+
+<h4><span class="label label-era">2020-2026</span> 複合危機と文明的転換</h4>
+
+<p>パンデミック、ウクライナ戦争、AI革命、気候危機の複合爆発により、従来の「成長」「支配」「理性的統治」といった近代的パラダイムが根底から問い直されている時代である。この時期のパラダイムシフトは「グローバル秩序そのものの再定義の危機」として記録されており、既存の自由主義的民主主義・市場経済・個人的自律性・普遍的人権・技術進歩への信仰というポスト冷戦的パラダイムの全面的な動揺が進行している。</p>
+
+<h3>1.3 現在の構造的位置（2025-Q4 〜 2026-Q2）</h3>
+
+<p>直近3四半期のCLA分析から、現代社会は以下の構造的位置に置かれていることが明らかになる。</p>
+
+<div class="highlight">
+<p><strong>表層（Litany）:</strong> 原油価格の$200/バレル接近、イラン情勢の緊迫化、AI企業への記録的投資、強権的統治の拡大、移民排斥の制度化、気候政策の逆行が同時進行している。</p>
+<p><strong>構造的原因（Systemic）:</strong> 米国一極体制の衰退と多極化圧力が国家主義的政策を加速させている。AI規制の国家的分裂、エネルギー安全保障の地政学化、社会保護の「選別化」が構造化されている。</p>
+<p><strong>世界観（Worldview）:</strong> 主権国家の絶対性と国益優先主義が支配的となり、技術進歩は必然的・不可避であるという宿命論的認識が広がっている。法は国家権力の道具として認識され、環境保全は経済合理性と結びつく場合にのみ推進される。</p>
+<p><strong>神話・メタファー（Myth）:</strong> 「強い指導者による秩序」の復活、「技術的救世主と技術的啓示録の並存」、「権力による支配の法的装置化」、「砦の民主主義」（包摂から排除へ）、「ウロボロスとしての資本主義」（自己防衛のための国家統制回帰）が現代の深層神話群を構成している。</p>
+</div>
+
+<p>2026年Q2の統合分析は、この位置づけを次のように要約している。「グローバル秩序の多極化と権力の集中化が同時進行する逆説的時代であり、民主主義的プロセスより強権的統治が優位になりつつある。イラン情勢という地政学的ショックを梃子に、各PESTLE領域で『国益・安全保障優先』というパラダイムが浸透し、AI技術への投機熱や環境政策さえも地政学的再編に従属させられている。」</p>
+
+<h3>1.4 パラダイムシフトの系譜</h3>
+
+<p>36年間に記録された10件のパラダイムシフトを時系列で整理すると、近代的秩序の段階的解体という一貫したパターンが浮かび上がる。</p>
+
+<table>
+<tr><th>期間</th><th>地域</th><th>名称</th></tr>
+<tr><td>1990-1995</td><td>Global</td><td>冷戦終結から啓蒙主義的グローバリズムへ</td></tr>
+<tr><td>1991-1993</td><td>Japan</td><td>護送船団から市場メカニズムへの転換</td></tr>
+<tr><td>1996-2002</td><td>Global</td><td>統一的秩序の失敗から帝国的支配への転換</td></tr>
+<tr><td>1998-2002</td><td>Japan</td><td>高度成長幻想から構造改革への転換</td></tr>
+<tr><td>2003-2008</td><td>Global</td><td>米国中心的秩序の相対化から多極化へ</td></tr>
+<tr><td>2008-2012</td><td>Japan</td><td>成長神話から脱成長的価値観への転換</td></tr>
+<tr><td>2009-2019</td><td>Global</td><td>デジタル・プラットフォームによる新形式の支配への移行</td></tr>
+<tr><td>2015-2020</td><td>Japan</td><td>単一国民国家から多元的社会への転換</td></tr>
+<tr><td>2020-2026</td><td>Global</td><td>グローバル秩序そのものの再定義の危機</td></tr>
+<tr><td>2020-2026</td><td>Japan</td><td>グローバル統合から多核的分散化への転換</td></tr>
+</table>
+
+<p>注目すべきは、グローバルと日本のパラダイムシフトが概ね同期しつつも、日本固有の「脱成長」や「多核的分散化」といった独自の軌道を描いている点である。現在進行中の2020-2026年のシフトは、グローバル・日本双方で「根本的な秩序の再定義」という最も深い水準での変動を示しており、これまでのシフトが「秩序内の転換」であったのに対し、「秩序そのものの転換」という質的に異なる段階に入ったことを示唆している。</p>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="part2">Part 2: シグナルの網羅的抽出とボトムアップ領域分類</h2>
+
+<h3>2.1 シグナルの概要</h3>
+
+<p>PESTLE信号データベースから抽出された411件の弱いシグナル（ノイズフラグが立っていないもの）を対象に、テキスト内容のボトムアップ分析によって12の領域に分類した。各シグナルは、新規性（Novelty）、破壊性（Disruption）、接続性（Connectivity）、信頼性（Credibility）、初期段階性（Early-stage）の5軸でスコアリングされており、これらの合成スコアによって重要度が判定されている。</p>
+
+<h3>2.2 ボトムアップ領域分類の結果</h3>
+
+<table>
+<tr><th>領域</th><th>件数</th><th>平均スコア</th><th>特徴</th></tr>
+<tr><td><strong>地政学・権力</strong></td><td>140</td><td>7.26</td><td>最大の領域。国家間権力再編、軍事化、主権回復がキーテーマ</td></tr>
+<tr><td><strong>AI・知能・認知</strong></td><td>51</td><td>7.34</td><td>高スコア。超知能規制、AI軍事化、認知への影響が突出</td></tr>
+<tr><td><strong>法・ガバナンス</strong></td><td>49</td><td>7.14</td><td>法的カテゴリーの崩壊、行政権の肥大化、プライバシー再定義</td></tr>
+<tr><td><strong>気候・環境</strong></td><td>44</td><td>7.35</td><td>最高平均スコア。氷床融解の閾値超過、地政学との環境政策衝突</td></tr>
+<tr><td><strong>経済・金融</strong></td><td>34</td><td>7.27</td><td>エネルギー危機の経済波及、戦略的資本配分への転換</td></tr>
+<tr><td><strong>社会・人口</strong></td><td>25</td><td>7.10</td><td>移民排斥の制度化、世代間格差、福祉の選別化</td></tr>
+<tr><td><strong>テクノロジー・デジタル</strong></td><td>22</td><td>7.05</td><td>宇宙デブリ、量子計算、デジタル支配の新形態</td></tr>
+<tr><td><strong>文化・価値観</strong></td><td>19</td><td>6.98</td><td>民主主義の形骸化、アイデンティティ政治の深化</td></tr>
+<tr><td><strong>生命科学・身体</strong></td><td>13</td><td>7.08</td><td>神経インプラント、身体拡張、バイオセキュリティ</td></tr>
+<tr><td><strong>情報・メディア</strong></td><td>6</td><td>7.53</td><td>件数は少ないが最高平均スコア。ディスインフォメーション構造化</td></tr>
+<tr><td><strong>食・農業</strong></td><td>6</td><td>6.83</td><td>食料安全保障と気候変動の交差</td></tr>
+<tr><td><strong>都市・インフラ</strong></td><td>2</td><td>6.90</td><td>スマートシティの監視性、インフラの脆弱性</td></tr>
+</table>
+
+<h3>2.3 領域横断的パターン</h3>
+
+<p>12領域の分布から読み取れる最も重要な知見は、シグナルが特定の技術領域やセクターに集中するのではなく、「権力の再編」を軸として領域を横断している点である。地政学・権力が全シグナルの34%を占め、これにAI・知能、法・ガバナンスを加えると全体の58%に達する。この構造は、現代の変化の本質がテクノロジーそのものではなく、テクノロジーを梃子とした「誰が、何を、どのように統治するのか」という権力の問いにあることを示している。</p>
+
+<p>また、平均合成スコアで見ると、「情報・メディア」（7.53）、「気候・環境」（7.35）、「AI・知能・認知」（7.34）が上位を占めている。件数の多い「地政学・権力」のスコアは7.26と中程度であり、これは地政学シグナルの多くが顕在化した動向（emerging trend）である一方、情報・気候・AIの各領域ではより潜在的で破壊力の高い弱いシグナル（weak signal）が検出されていることを意味する。</p>
+
+<h3>2.4 トップシグナル</h3>
+
+<p>合成スコア上位の10件を以下に示す。これらは現代社会の構造的変動において最も注視すべきシグナルである。</p>
+
+<table>
+<tr><th>スコア</th><th>シグナル</th><th>領域</th></tr>
+<tr><td>8.7</td><td>グリーンランド氷床の7000年規模の完全融解サイクル検出と閾値超過の新仮説</td><td>気候・環境</td></tr>
+<tr><td>8.6</td><td>超知能規制の階級的分裂による民主的コンセンサス構造の崩壊</td><td>AI・知能・認知</td></tr>
+<tr><td>8.5</td><td>地球圏新規力：無機プロセスの自律的主体化</td><td>気候・環境</td></tr>
+<tr><td>8.5</td><td>「永遠の化学物質」除去技術の発見と環境正義の構造転換</td><td>気候・環境</td></tr>
+<tr><td>8.4</td><td>AI文脈でのカント的義務論の制度化</td><td>AI・知能・認知</td></tr>
+<tr><td>8.4</td><td>国際法的正義システムの構造的崩壊と「例外の常態化」</td><td>法・ガバナンス</td></tr>
+<tr><td>8.4</td><td>オーストラリア野火とグリーンランド融解の複合環境カタストロフィー</td><td>気候・環境</td></tr>
+<tr><td>8.3</td><td>超知能に対する「存在的恐怖」の政策制度化</td><td>AI・知能・認知</td></tr>
+<tr><td>8.3</td><td>地球規模の相互接続リスク（イラン戦争→エネルギー→金融→社会）</td><td>地政学・権力</td></tr>
+<tr><td>8.3</td><td>ポスト・プライバシー時代の「法的カテゴリー超越」</td><td>法・ガバナンス</td></tr>
+</table>
+
+<p>トップ10のうち4件が気候・環境、3件がAI・知能、2件が法・ガバナンスに属しており、地政学はわずか1件である。これは先述のパターン（地政学は量的に支配的だが質的には他領域のシグナルが強い）を裏付けている。気候系の閾値超過シグナルと、AIの規制・倫理に関するシグナルが最高水準の破壊力を持つことが確認された。</p>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="part3">Part 3: Vorosフューチャーコーン8象限分類</h2>
+
+<h3>3.1 Vorosフューチャーコーンの理論的枠組み</h3>
+
+<p>Joseph Vorosのフューチャーコーン（Future Cone）は、未来の可能性を確度の異なる4つの層で構造化するフレームワークである。本分析では、この4層に「望ましさ」（Desirable / Undesirable）の2軸を掛け合わせ、計8つの象限（quadrant）を構成した。</p>
+
+<table>
+<tr><th>層</th><th>定義</th><th>確度</th></tr>
+<tr><td><strong>Projected（予測）</strong></td><td>現在のトレンドが継続した場合の帰結</td><td>最高</td></tr>
+<tr><td><strong>Probable（蓋然的）</strong></td><td>現在の知識に基づき起こりそうなこと</td><td>高</td></tr>
+<tr><td><strong>Plausible（もっともらしい）</strong></td><td>現在の理解の範囲で起こりうること</td><td>中</td></tr>
+<tr><td><strong>Possible（可能）</strong></td><td>物理法則に反しない限りのあらゆる可能性</td><td>低</td></tr>
+</table>
+
+<h3>3.2 データソースと分類方法</h3>
+
+<p>Foresight Knowledge Baseに蓄積された22,546件の予測を対象に、以下の2段階で8象限に分類した。</p>
+
+<p>第一段階として、各予測に既に付与されているvoros_layer（projected / probable / plausible / possible / preferable）を確度軸の分類に使用した。なお、preferableカテゴリ（1,472件）はplausible × desirableに統合した。第二段階として、予測テキスト中の望ましさ指標（改善・機会・成長等のポジティブマーカーと、リスク・危機・崩壊等のネガティブマーカー）を用いて、desirable / undesirable / ambiguousに分類した。</p>
+
+<h3>3.3 8象限の分布</h3>
+
+<div class="grid-2">
+<div class="grid-cell" style="background:#fafdf9; border-left:3px solid #3a7528">
+  <strong>Projected × Desirable: 260件</strong><br>
+  テクノロジー主導の改善予測。AI・デジタルヘルス・教育イノベーション。
+</div>
+<div class="grid-cell" style="background:#fefafa; border-left:3px solid #a03020">
+  <strong>Projected × Undesirable: 31件</strong><br>
+  現在のトレンドの延長上にある不可避的リスク。格差拡大、環境悪化の継続。
+</div>
+<div class="grid-cell" style="background:#fafdf9; border-left:3px solid #3a7528">
+  <strong>Probable × Desirable: 213件</strong><br>
+  高い蓋然性を持つポジティブ変化。再生可能エネルギー転換、ガバナンス改善。
+</div>
+<div class="grid-cell" style="background:#fefafa; border-left:3px solid #a03020">
+  <strong>Probable × Undesirable: 120件</strong><br>
+  起こりそうなリスク。地政学的不安定化、AI悪用、サイバー脅威。
+</div>
+<div class="grid-cell" style="background:#fafdf9; border-left:3px solid #3a7528">
+  <strong>Plausible × Desirable: 2,592件</strong><br>
+  最大象限。テクノロジー、ガバナンス、健康、教育にわたる広範な改善可能性。
+</div>
+<div class="grid-cell" style="background:#fefafa; border-left:3px solid #a03020">
+  <strong>Plausible × Undesirable: 240件</strong><br>
+  もっともらしいリスクシナリオ。環境崩壊、権威主義拡大、技術的監視。
+</div>
+<div class="grid-cell" style="background:#fafdf9; border-left:3px solid #3a7528">
+  <strong>Possible × Desirable: 6件</strong><br>
+  革新的な可能性。根本的なパラダイム転換を伴う理想的未来。
+</div>
+<div class="grid-cell" style="background:#fefafa; border-left:3px solid #a03020">
+  <strong>Possible × Undesirable: 6件</strong><br>
+  壊滅的リスク。文明崩壊レベルのシナリオ。
+</div>
+</div>
+
+<h3>3.4 象限内のドメイン分布（ボトムアップ領域設定）</h3>
+
+<p>各象限内の予測をドメイン別に集計し、ボトムアップで領域構造を把握した。</p>
+
+<h4>Desirable側の領域構造</h4>
+
+<p>Desirable予測の合計3,071件をドメイン別に見ると、テクノロジー（約40%）が突出し、次いでガバナンス（約15%）、経済（約10%）、健康（約8%）が続く。これは外部フォーサイト機関の予測が「技術駆動型の改善」に強く傾斜していることを示しており、社会制度の根本的転換や文化的変容に関する望ましい予測が相対的に少ないという構造的バイアスが存在する。</p>
+
+<h4>Undesirable側の領域構造</h4>
+
+<p>Undesirable予測の合計397件では、ガバナンス（約25%）、テクノロジー（約22%）、環境（約15%）の順となる。技術はDesirable側でもUndesirable側でも上位に位置しており、技術の「二面性」（双方向的不確実性）が最も顕著な領域であることが確認される。環境はUndesirable側でのプレゼンスが相対的に高く、気候リスクが「もっともらしい望ましくない未来」の中心にあることが示されている。</p>
+
+<h3>3.5 予測確度と望ましさの交差分析</h3>
+
+<p>8象限の分布パターンから、いくつかの構造的知見が得られる。</p>
+
+<p>第一に、Desirable:Undesirable比は全体で約7.7:1であり、外部フォーサイトは全体として楽観的なバイアスを持っている。ただしこれは予測の質的内容ではなく、フォーサイト機関が「推奨される未来像」を強調する傾向を反映している可能性が高い。</p>
+
+<p>第二に、Projected（確度最高）層ではDesirable:Undesirable比が約8.4:1と最も高く、「現在のトレンドが続けばおおむね良い方向に向かう」という暗黙の前提が読み取れる。これはPart 1のCLA分析が示す「近代的秩序の根本的動揺」とは明らかに矛盾しており、外部フォーサイトの構造的楽観バイアスの表れと解釈できる。</p>
+
+<p>第三に、Probable層ではDesirable:Undesirable比が約1.8:1まで低下し、この層が「バランスの取れた」予測が最も集中する領域であることが分かる。Probable×Undesirableの120件は、「起こりそうな望ましくない未来」として最も注視すべきカテゴリである。</p>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="synthesis">統合考察</h2>
+
+<h3>CLA構造分析とシグナル・フォーサイトの統合</h3>
+
+<p>3つの分析を横断的に統合すると、現代社会の位置づけについて以下の構造的理解が得られる。</p>
+
+<div class="highlight">
+<p><strong>構造的認識 1: 秩序の転換と権力の再編が同時進行している</strong></p>
+<p>CLA分析は、1990年の冷戦終結から始まった近代的秩序の段階的解体が、2020年以降「秩序そのものの転換」という質的に異なる段階に入ったことを示している。シグナル分析は、この転換の最前線が「地政学・権力」の領域にあること（140件、全体の34%）を裏付けている。しかし外部フォーサイトの8象限分類は、この構造的転換を十分に反映しておらず、テクノロジー駆動型の改善予測に偏重している。</p>
+</div>
+
+<div class="highlight">
+<p><strong>構造的認識 2: 深層の神話が並立・競合している</strong></p>
+<p>CLA最深層の分析は、現代に「強い指導者による秩序」「技術的救世主/啓示録」「砦の民主主義」「ウロボロスとしての資本主義」という4つの競合する神話が並存していることを示している。単一の支配的物語が存在しないこの状態は、社会の方向性に関する合意形成が極めて困難であることを意味する。シグナル分析で「超知能規制の階級的分裂」（スコア8.6）が上位に位置しているのは、この神話レベルでの分裂がAI統治という最も先鋭的な領域で表面化しつつある兆候と読める。</p>
+</div>
+
+<div class="highlight">
+<p><strong>構造的認識 3: 環境閾値の超過が「もっともらしい」最大リスクである</strong></p>
+<p>シグナル分析のトップ（スコア8.7）はグリーンランド氷床融解の閾値超過であり、Voros分類でもPlausible×Undesirable象限で環境が上位に位置している。CLA分析の環境カテゴリは、「ガイア仮説の崩壊と複数の地球の競合」という神話的転換を記録している。これらは収斂的に、環境的閾値の超過が「ありそうもないが起きうる」（Possible）ではなく「もっともらしく、望ましくない」（Plausible×Undesirable）段階に移行しつつあることを示している。</p>
+</div>
+
+<div class="highlight">
+<p><strong>構造的認識 4: 外部フォーサイトの構造的楽観バイアス</strong></p>
+<p>22,546件の外部予測のDesirable:Undesirable比が7.7:1であることは、フォーサイト機関全体に構造的な楽観バイアスが存在することを示唆する。特にProjected層（現在トレンドの延長）でこの比率が最も高い点は、「現状維持がおおむね良好な結果をもたらす」という暗黙の前提を含んでおり、CLA分析が明らかにした「秩序そのものの転換」とは根本的に異なる認識枠組みに立っている。ミラツクの独自分析がこの外部フォーサイトを補完・修正する上で果たす役割は大きい。</p>
+</div>
+
+<h3>ミラツクの立ち位置と今後の方向性</h3>
+
+<p>以上の分析から、ミラツクが未来洞察において担うべき役割は、以下の3点に集約される。</p>
+
+<p>第一に、外部フォーサイトの楽観バイアスを是正する「深層構造の読み解き手」としての役割である。CLA分析が蓄積した36年間の構造データは、表層的なトレンド予測では捉えられない文明的転換の動態を可視化する希少な資産であり、これを活用した「構造的フォーサイト」の提供がミラツクの固有価値となる。</p>
+
+<p>第二に、12のシグナル領域を横断する「権力の再編」パターンに注目し、技術・法・社会・環境の各領域で進行する変化を統合的に解釈する「多領域統合」の視座を提供することである。個別セクターの予測ではなく、権力構造の変動として未来を読む能力は、ミラツクの人類学的基盤と深い親和性を持つ。</p>
+
+<p>第三に、Vorosフューチャーコーンの「Preferable（望ましい）」層を、楽観的な技術予測としてではなく、CLA最深層の神話レベルでの「新しい物語の構築」として再定義することである。「砦の民主主義」や「技術的啓示録」に代わる、より包摂的で持続可能な物語を構想する場としてのフォーサイト実践が求められている。</p>
+
+<!-- ═══════════════════════════════════════ -->
+<h2 id="method">方法論</h2>
+
+<h3>データソース</h3>
+<table>
+<tr><th>データベース</th><th>レコード数</th><th>期間</th><th>主な内容</th></tr>
+<tr><td>CLA DB</td><td>342分析 + 53統合</td><td>1990-2026</td><td>6 PESTLE × 6 CLA層の構造分析</td></tr>
+<tr><td>Signal DB</td><td>411シグナル</td><td>2026年4月</td><td>弱いシグナル、5軸スコアリング</td></tr>
+<tr><td>Foresight KB</td><td>22,546予測</td><td>多年</td><td>309ソースからの構造化予測</td></tr>
+<tr><td>PESTLE DB</td><td>223,208記事</td><td>〜2026</td><td>6カテゴリのニュース収集</td></tr>
+</table>
+
+<h3>分析手法</h3>
+<p><strong>Part 1:</strong> CLA DBから36年間のデータを抽出し、6つの時代区分に構造化。各時代のCLA 4層の変遷パターンとパラダイムシフトの系譜を分析。</p>
+<p><strong>Part 2:</strong> Signal DBの411件（ノイズ除外済み）を対象に、シグナル名称と説明文のキーワード分析によるボトムアップクラスタリングを実施。12テーマの初期カテゴリを設定し、PESTLEカテゴリによるフォールバック分類で未分類シグナルを割り当て。</p>
+<p><strong>Part 3:</strong> Foresight KBの予測にあらかじめ付与されたvoros_layer（Vorosフューチャーコーン分類）を確度軸として使用。望ましさの分類は、ポジティブ/ネガティブマーカーの出現頻度比較による自動分類で実施。ambiguous（19,078件）は8象限集計から除外し、明確に分類可能な3,468件を対象に分析を実施した。</p>
+
+<h3>制約と留意事項</h3>
+<p>本分析にはいくつかの制約がある。第一に、望ましさの自動分類は単純なキーワードマッチングに基づいており、文脈依存的な判断（例：「破壊的イノベーション」のような肯定的破壊）を十分に捉えられていない可能性がある。第二に、外部フォーサイトの情報源は英語圏・西洋圏に偏重しており、グローバルサウスの視点が過小代表されている。第三に、CLA分析そのものがAI生成であり、分析者の解釈バイアスとは異なる種類のバイアス（学習データ由来の偏り）を含む可能性がある。</p>
+
+<div class="footnote">
+<p>本レポートはNPO法人ミラツクの未来洞察データ資産に基づく内部分析資料です。</p>
+<p>生成日: 2026年4月23日 | データ基準日: 2026年4月23日</p>
+<p>MIRA TUKU &mdash; Foresight Mega-Analysis Report v1.0</p>
+</div>
+
+</body>
+</html>
