@@ -36,31 +36,88 @@ body {
 }
 
 .header {
-  background: linear-gradient(135deg, var(--accent), var(--deep-brown, #5a2d1a));
+  background: var(--accent);
   color: #fff;
-  padding: 2rem 2rem 1.5rem;
   position: sticky; top: 0; z-index: 100;
+  overflow: hidden;
 }
-.header h1 { font-size: 1.4rem; font-weight: 600; letter-spacing: 0.08em; }
-.header .subtitle { font-size: 0.85rem; opacity: 0.85; margin-top: 0.3rem; }
-.header .brand { font-size: 0.7rem; opacity: 0.6; letter-spacing: 0.15em; margin-top: 0.5rem; }
+.header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.2rem 2rem;
+  z-index: 2;
+}
+.header-seeds {
+  position: absolute; inset: 0; z-index: 1;
+  overflow: hidden; pointer-events: none;
+}
+.header-seeds .seed {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0.12;
+}
+.header-symbol {
+  width: 52px; height: 52px;
+  position: relative; flex-shrink: 0;
+}
+.header-symbol .s {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0.85;
+}
+.header-text { flex: 1; min-width: 0; }
+.header h1 {
+  font-size: 1.15rem; font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+}
+.header .subtitle {
+  font-size: 0.78rem; opacity: 0.75;
+  margin-top: 0.15rem;
+  letter-spacing: 0.02em;
+}
+.header-meta {
+  text-align: right; flex-shrink: 0;
+}
+.header-meta .brand {
+  font-size: 0.65rem; opacity: 0.5;
+  letter-spacing: 0.18em; font-weight: 600;
+}
+.header-meta .date {
+  font-size: 0.7rem; opacity: 0.6;
+  margin-top: 0.15rem;
+  font-variant-numeric: tabular-nums;
+}
 
 .nav {
-  display: flex; gap: 0; border-bottom: 2px solid var(--border);
-  background: var(--card-bg);
+  display: flex; gap: 0;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 99;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .nav button {
-  flex: 1; padding: 0.8rem 1rem; border: none; background: none;
-  font-size: 0.85rem; cursor: pointer; color: var(--warm-brown, #966D5E);
+  flex: 1; padding: 0.7rem 1rem; border: none; background: none;
+  font-size: 0.82rem; cursor: pointer; color: #999;
   font-weight: 500; transition: all 0.2s;
-  border-bottom: 3px solid transparent;
+  border-bottom: 2px solid transparent;
+  position: relative;
 }
-.nav button:hover { background: #f5ece4; }
+.nav button::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 50%; width: 0; height: 2px;
+  background: var(--accent);
+  transition: all 0.25s ease;
+  transform: translateX(-50%);
+}
+.nav button:hover { color: var(--accent); background: #fef9f4; }
+.nav button:hover::after { width: 60%; }
 .nav button.active {
-  color: var(--accent); border-bottom-color: var(--accent);
-  font-weight: 700;
+  color: var(--accent); font-weight: 700;
 }
+.nav button.active::after { width: 100%; }
 
 .section { display: none; padding: 1.5rem; max-width: 1400px; margin: 0 auto; }
 .section.active { display: block; }
@@ -280,9 +337,18 @@ tr:hover td { background: #fefcfa; }
 <body>
 
 <div class="header">
-  <h1>FORESIGHT MEGA-ANALYSIS DASHBOARD</h1>
-  <div class="subtitle">CLA構造分析 + シグナル網羅的抽出 + Vorosフューチャーコーン8象限分類</div>
-  <div class="brand">MIRA TUKU &mdash; 2026-04-23</div>
+  <div class="header-seeds" id="header-seeds"></div>
+  <div class="header-inner">
+    <div class="header-symbol" id="header-symbol"></div>
+    <div class="header-text">
+      <h1>FORESIGHT MEGA-ANALYSIS</h1>
+      <div class="subtitle">CLA構造分析 + シグナル網羅的抽出 + Vorosフューチャーコーン8象限分類</div>
+    </div>
+    <div class="header-meta">
+      <div class="brand">MIRA TUKU</div>
+      <div class="date">2026-04-23</div>
+    </div>
+  </div>
 </div>
 
 <div class="nav">
@@ -674,6 +740,38 @@ function renderVoros() {
 }
 
 // Load data and render
+// Generative Miratuku seed symbol in header
+(function renderHeaderSeeds() {
+  const colors = CI;
+  // Symbol (small swirl)
+  const sym = document.getElementById('header-symbol');
+  const cx = 26, cy = 26;
+  for (let i = 0; i < 9; i++) {
+    const angle = (i / 9) * Math.PI * 2.4 + 0.3;
+    const r = 6 + i * 2.2;
+    const x = cx + Math.cos(angle) * r - 5;
+    const y = cy + Math.sin(angle) * r - 3;
+    const rot = (angle * 180 / Math.PI) + 60;
+    const el = document.createElement('div');
+    el.className = 's';
+    el.style.cssText = `width:${8+i*0.5}px;height:${5+i*0.3}px;left:${x}px;top:${y}px;background:${colors[i % 12]};transform:rotate(${rot}deg);`;
+    sym.appendChild(el);
+  }
+  // Background seeds (scattered)
+  const bg = document.getElementById('header-seeds');
+  const w = window.innerWidth;
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'seed';
+    const sz = 12 + Math.random() * 30;
+    const x = Math.random() * w;
+    const y = -5 + Math.random() * 80;
+    const rot = Math.random() * 360;
+    el.style.cssText = `width:${sz}px;height:${sz*0.6}px;left:${x}px;top:${y}px;background:${colors[Math.floor(Math.random()*12)]};transform:rotate(${rot}deg);`;
+    bg.appendChild(el);
+  }
+})();
+
 fetch('data/analysis.json')
   .then(r => r.json())
   .then(data => {
