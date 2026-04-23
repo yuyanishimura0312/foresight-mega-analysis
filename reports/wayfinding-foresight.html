@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>航法者の知覚論 — ウェイファインディングとフォーサイトの構造的対話 | MIRA TUKU</title>
+  <style>
+    :root {
+      --accent: #783c28;
+      --bg: #faf8f5;
+      --text: #1a1a1a;
+      --border: #e8e0d8;
+      --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --ci-orange: #F0A671;
+      --ci-peach: #F8CDAC;
+      --ci-gold: #CEA26F;
+      --ci-rust: #DC8766;
+      --ci-brown: #B07256;
+      --ci-deep: #7A4033;
+      --ci-warm: #F2C792;
+      --ci-light: #F1C189;
+      --ci-mid: #F0BE83;
+      --ci-muted: #EFC4A4;
+      --ci-soft: #F7BEA2;
+      --ci-dark: #966D5E;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.85;
+      font-size: 16px;
+    }
+
+    /* Wave background pattern */
+    .wave-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0.03;
+    }
+
+    .wave-bg svg {
+      width: 200%;
+      height: 100%;
+      animation: wave-drift 40s linear infinite;
+    }
+
+    @keyframes wave-drift {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      z-index: 10;
+      background: linear-gradient(135deg, var(--ci-deep) 0%, var(--accent) 50%, var(--ci-rust) 100%);
+      color: white;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .header-inner {
+      position: relative;
+      padding: 3rem 4rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-compass {
+      position: absolute;
+      right: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.12;
+      width: 200px;
+      height: 200px;
+    }
+
+    .brand-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ci-peach);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .header-sub {
+      font-size: 1rem;
+      color: var(--ci-peach);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.65);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1rem;
+    }
+
+    .header-wave {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* TOC */
+    .toc {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--ci-rust);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .toc h2 {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc-counter;
+    }
+
+    .toc > ol > li {
+      counter-increment: toc-counter;
+      margin-bottom: 0.4rem;
+    }
+
+    .toc > ol > li > a::before {
+      content: counter(toc-counter) ". ";
+      color: var(--ci-rust);
+      font-weight: 600;
+    }
+
+    .toc a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+    }
+
+    .toc .sub {
+      list-style: none;
+      padding-left: 1.5rem;
+      margin-top: 0.3rem;
+    }
+
+    .toc .sub li {
+      margin-bottom: 0.2rem;
+    }
+
+    .toc .sub a {
+      font-size: 0.88rem;
+      color: #555;
+    }
+
+    .toc .sub a::before {
+      content: "—  ";
+      color: var(--border);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    h2.section-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    h3.sub-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ci-deep);
+      margin: 2rem 0 0.8rem;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+    }
+
+    /* Bridge Cards */
+    .bridge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 680px) {
+      .bridge-grid { grid-template-columns: 1fr; }
+    }
+
+    .bridge-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .bridge-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(120,60,40,0.1);
+    }
+
+    .bridge-card-header {
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .bridge-card-header .nav-side {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: white;
+    }
+
+    .bridge-icon {
+      font-size: 1.2rem;
+    }
+
+    .bridge-arrow {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      margin: 0 0.2rem;
+    }
+
+    .bridge-card-body {
+      padding: 0.9rem 1.2rem;
+    }
+
+    .bridge-label-pair {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-nav {
+      background: #fef3eb;
+      color: var(--ci-rust);
+      border: 1px solid var(--ci-orange);
+    }
+
+    .badge-foresight {
+      background: #f0f4ff;
+      color: #3a5c9e;
+      border: 1px solid #c5d3f0;
+    }
+
+    .bridge-label-pair .connector {
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+
+    .bridge-card-body p {
+      font-size: 0.88rem;
+      color: #444;
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    /* Quote blocks */
+    blockquote {
+      border-left: 4px solid var(--ci-orange);
+      padding: 1.1rem 1.5rem;
+      margin: 2rem 0;
+      background: linear-gradient(to right, #fef9f5, transparent);
+      border-radius: 0 6px 6px 0;
+    }
+
+    blockquote p {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #333;
+      margin-bottom: 0.4rem;
+    }
+
+    blockquote cite {
+      font-size: 0.82rem;
+      color: #777;
+      font-style: normal;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: linear-gradient(135deg, #fef3eb, #faf0e8);
+      border: 1px solid var(--ci-orange);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .highlight-box h4 {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .highlight-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      color: #333;
+    }
+
+    /* Compass divider */
+    .compass-divider {
+      text-align: center;
+      margin: 3rem 0;
+      color: var(--border);
+      font-size: 1.5rem;
+      letter-spacing: 1rem;
+    }
+
+    /* Single large bridge (full-width) */
+    .bridge-card-full {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .bridge-card-full .bridge-card-header {
+      justify-content: space-between;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ci-deep);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.82rem;
+      margin-top: 4rem;
+    }
+
+    footer strong {
+      color: var(--ci-peach);
+    }
+
+    /* Pullout stat */
+    .stat-row {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-item {
+      flex: 1;
+      background: white;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--ci-rust);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    /* Five pillars */
+    .pillar {
+      border-left: 3px solid var(--ci-orange);
+      padding: 0 0 0 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .pillar-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ci-rust);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .pillar h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    /* Malama section special */
+    .malama-banner {
+      background: linear-gradient(135deg, var(--ci-deep), var(--accent));
+      color: white;
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .malama-banner h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--ci-peach);
+    }
+
+    .malama-banner p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 0;
+    }
+
+    /* Conclusion callout */
+    .conclusion-box {
+      background: var(--text);
+      color: white;
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+    }
+
+    .conclusion-box h3 {
+      color: var(--ci-peach);
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .conclusion-box p {
+      color: rgba(255,255,255,0.87);
+      line-height: 1.85;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Animated wave background -->
+<div class="wave-bg" aria-hidden="true">
+  <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#783c28" d="M0,160L60,170.7C120,181,240,203,360,197.3C480,192,600,160,720,154.7C840,149,960,171,1080,165.3C1200,160,1320,128,1380,112L1440,96L1440,320L0,320Z"/>
+    <path fill="#DC8766" opacity="0.5" d="M0,224L80,213.3C160,203,320,181,480,186.7C640,192,800,224,960,218.7C1120,213,1280,171,1360,149.3L1440,128L1440,320L0,320Z"/>
+    <path fill="#F0A671" opacity="0.3" d="M0,256L48,250.7C96,245,192,235,288,229.3C384,224,480,224,576,208C672,192,768,160,864,154.7C960,149,1056,171,1152,186.7C1248,203,1344,213,1392,218.7L1440,224L1440,320L0,320Z"/>
+    <!-- Second copy for seamless loop -->
+    <path fill="#783c28" d="M1440,160L1500,170.7C1560,181,1680,203,1800,197.3C1920,192,2040,160,2160,154.7C2280,149,2400,171,2520,165.3C2640,160,2760,128,2820,112L2880,96L2880,320L1440,320Z"/>
+    <path fill="#DC8766" opacity="0.5" d="M1440,224L1520,213.3C1600,203,1760,181,1920,186.7C2080,192,2240,224,2400,218.7C2560,213,2720,171,2800,149.3L2880,128L2880,320L1440,320Z"/>
+  </svg>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <!-- Compass SVG (decorative) -->
+    <svg class="header-compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="100" cy="100" r="95" stroke="white" stroke-width="2"/>
+      <circle cx="100" cy="100" r="70" stroke="white" stroke-width="1" stroke-dasharray="4 4"/>
+      <circle cx="100" cy="100" r="45" stroke="white" stroke-width="1"/>
+      <circle cx="100" cy="100" r="6" fill="white"/>
+      <!-- N -->
+      <polygon points="100,8 92,60 100,48 108,60" fill="white"/>
+      <!-- S -->
+      <polygon points="100,192 92,140 100,152 108,140" fill="white" opacity="0.5"/>
+      <!-- E -->
+      <polygon points="192,100 140,92 152,100 140,108" fill="white" opacity="0.5"/>
+      <!-- W -->
+      <polygon points="8,100 60,92 48,100 60,108" fill="white" opacity="0.5"/>
+      <!-- Cross lines -->
+      <line x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="0.5" opacity="0.3"/>
+      <line x1="10" y1="100" x2="190" y2="100" stroke="white" stroke-width="0.5" opacity="0.3"/>
+      <!-- Diagonal lines -->
+      <line x1="30" y1="30" x2="170" y2="170" stroke="white" stroke-width="0.5" opacity="0.2"/>
+      <line x1="170" y1="30" x2="30" y2="170" stroke="white" stroke-width="0.5" opacity="0.2"/>
+    </svg>
+
+    <div class="brand-tag">MIRA TUKU &nbsp;|&nbsp; Foresight Mega-Analysis Series</div>
+    <h1>航法者の知覚論<br>ウェイファインディングとフォーサイトの構造的対話</h1>
+    <p class="header-sub">ナイノア・トンプソンの航法哲学を検証レンズとして、フォーサイト・メガ分析アプローチが<br>「未来を見る力・判断する力」をいかに高めるかを考察する</p>
+    <div class="header-meta">
+      <span>分析日：2026年4月23日</span>
+      <span>著者：西村勇也 / ミラツク研究部門</span>
+      <span>データベース：Wayfinding DB（88エントリ）</span>
+    </div>
+  </div>
+
+  <!-- SVG Wave separator -->
+  <svg class="header-wave" viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,20 C360,40 720,0 1080,20 C1260,30 1380,15 1440,10 L1440,40 L0,40 Z" fill="#faf8f5"/>
+  </svg>
+</header>
+
+<!-- Main content -->
+<div class="container">
+
+  <!-- TOC -->
+  <nav class="toc" aria-label="目次">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#intro">はじめに — なぜ航法者の知恵が問われるのか</a></li>
+      <li><a href="#epistemology">航法者の認識論 — 多感覚・暗黙・生態学的な「知ること」</a></li>
+      <li><a href="#parallels">五つの構造的平行</a>
+        <ul class="sub">
+          <li><a href="#p1">未知の構造化（星コンパス ↔ CLA/PESTLE）</a></li>
+          <li><a href="#p2">弱いシグナルを読む（うねり・鳥・雲 ↔ 弱シグナル理論）</a></li>
+          <li><a href="#p3">不確かさの中でビジョンを保持する（島のビジョン ↔ 望ましい未来）</a></li>
+          <li><a href="#p4">ルートを適応させる（エタック/推測航法 ↔ 適応的戦略）</a></li>
+          <li><a href="#p5">深い記憶による航法（口承伝統 ↔ CLAの神話層）</a></li>
+        </ul>
+      </li>
+      <li><a href="#analysis">ウェイファインディングが私たちの分析に教えること</a></li>
+      <li><a href="#malama">マーラマ・ホヌア — 制御ではなくケアとしてのフォーサイト</a></li>
+      <li><a href="#conclusion">おわりに — 一人の航法者から一千万人の航法者へ</a></li>
+    </ol>
+  </nav>
+
+  <!-- Section 1: Introduction -->
+  <section id="intro">
+    <h2 class="section-title">1. はじめに — なぜ航法者の知恵が問われるのか</h2>
+
+    <p>太平洋の夜空の下、星の位置とうねりの向きと風の匂いだけを頼りに、三千キロの外洋を渡る。GPSも羅針盤も持たず、ただ身体という精密な測定器と数千年にわたって積み重ねられた集合的記憶だけを携えて、島から島へと渡る。ポリネシア伝統航法、すなわちウェイファインディングは、人類史上もっとも高度な「環境読解の実践」のひとつである。</p>
+
+    <p>この分析レポートが問うのは、次のことだ。フォーサイト・メガ分析——すなわちCLA（因果階層分析）、PESTLEスキャン、ボロスのコーン、弱シグナル検出、シナリオプランニングを組み合わせた未来探索のアプローチ——は、伝統航法が有していた「未来を感知し、判断し、行動する力」を、現代の知識実践においていかに再現しようとしているのか。そして、そのアプローチは伝統航法の哲学的深度に耐えうるものか。</p>
+
+    <p>ナイノア・トンプソン（Nainoa Thompson）は、1976年のホクレア号の歴史的航海を率いたポリネシア伝統航法士であり、1980年代以降その技術と哲学を体系的に復元・継承してきた中心人物である。彼は「航法とは世界を組織化する方法であり、リーダーシップの方法であり、ビジョンを見出す方法であり、人生のモデルである」（チャド・ベイベイアン）という言葉で語られる実践を具現化した人物だ。この言葉を私たちのフォーサイト実践に照らすとき、両者の間には驚くほど深い構造的共鳴が見えてくる。</p>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-num">88</div>
+        <div class="stat-label">Wayfinding DBエントリ総数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">15</div>
+        <div class="stat-label">ウェイファインディング↔フォーサイト橋渡し点</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1976</div>
+        <div class="stat-label">ホクレア初航海・技術復元の起点年</div>
+      </div>
+    </div>
+
+    <p>本レポートは単なる比喩の遊びではない。両実践に共通する認識論的構造——不確実な環境の中でパターンを読み、ビジョンを保持しながら経路を適応させ、集合的な記憶と身体的知覚を統合する——を解剖することで、フォーサイト・メガ分析アプローチがいかなる「知ることの様式」を採用しているかを明らかにする試みである。</p>
+  </section>
+
+  <!-- Section 2: Epistemology -->
+  <section id="epistemology">
+    <h2 class="section-title">2. 航法者の認識論 — 多感覚・暗黙・生態学的な「知ること」</h2>
+
+    <p>現代の航法は計器に依存する。GPSが現在位置を教え、気象アプリが風を予告し、電子海図が深度を示す。それは「外部委託された認識」であり、計器が壊れたとき、人は途方に暮れる。ポリネシア伝統航法は根本的に異なる認識論に立っている。知識は身体の中にあり、環境との継続的な対話から生まれ、世代を超えた記憶の中に蓄積されている。</p>
+
+    <p>ナイノア・トンプソンが師と仰いだマウ・ピアイルグ（Mau Piailug）は、うねりの方向を腰や太もも、足の裏で感知した。波は直接見るよりも体感する方が正確だと言う。夜の星の位置は、コグニティブ・マップとして精神の中に三次元で再現されている。鳥の飛行方向は島の存在を告げ、雲の形は陸地の上昇気流を示す。これら数十種類のシグナルが並列処理され、リアルタイムに統合されて「今、自分はどこにいるか」という位置認識が形成される。</p>
+
+    <blockquote>
+      <p>「あなたが海の上でどこにいるかを知ることができるのは、どこから来たかを記憶することによってのみです。」</p>
+      <cite>— ナイノア・トンプソン</cite>
+    </blockquote>
+
+    <p>この言葉は認識論的に深い意味を持つ。現在地の把握は、単なる現在の知覚ではなく、過去の軌跡の累積として成立する。位置は「発見されるもの」ではなく「構築されるもの」であり、その構築は時間軸を横断した記憶の統合によって行われる。これはまさに、フォーサイトにおける「現在の理解は過去のトレンドと未来のビジョンの交差点に立って初めて可能になる」という命題と同型である。</p>
+
+    <p>航法者の認識論には三つの層がある。第一は生態学的知覚、すなわち環境から直接読み取られる情報の層。第二は身体的・暗黙知の層、すなわち訓練によって無意識化された判断パターン。第三は文化的・集合記憶の層、すなわち口承によって世代を超えて継承されてきた知の蓄積。この三層構造は、フォーサイト実践における「現在の弱シグナル観察→分析フレームワーク適用→文明的・神話的前提の解読」というCLAの三層構造と驚くほど対応している。</p>
+
+    <div class="highlight-box">
+      <h4>認識論的共通点</h4>
+      <p>ウェイファインディングもフォーサイトも、「単一の強いシグナル」に依存しない。むしろ、複数の弱い・断片的なシグナルを並列に処理し、それらのパターンから全体像を構築する。どちらも「データが揃ってから判断する」ではなく、「不完全な情報の中でパターンを感知し、継続的に仮説を更新しながら進む」という動的な認識様式を採用している。</p>
+    </div>
+  </section>
+
+  <!-- Section 3: Five Parallels -->
+  <section id="parallels">
+    <h2 class="section-title">3. 五つの構造的平行</h2>
+
+    <!-- Pillar 1 -->
+    <div class="pillar" id="p1">
+      <div class="pillar-num">Parallel I</div>
+      <h3>未知の構造化 — 星コンパスとCLA/PESTLE</h3>
+
+      <p>ポリネシアの航法者は、水平線を三百六十度にわたって「星の家」に分割した。東・西・北・南の基本方位を起点に、それぞれの方位で特定の星が昇り・沈む位置が精密にマッピングされ、これが「スター・コンパス」として知識化されている。この概念図は航海士の頭の中にある。計器ではなく、内在化された構造的フレームとして。夜空のどこに何があるかを事前に知っているからこそ、わずかな変化が異常として検知できる。</p>
+
+      <p>PESTLEは同じ論理を持つ。Political、Economic、Social、Technological、Legal、Environmentalという六つのセクターに、マクロ環境を構造化する。このフレームが内在化されているからこそ、ランダムな出来事が「政治的変動」あるいは「技術的破壊」として意味付けられる。CLAはさらに深く、リテラル→社会的原因→世界観→神話という四層で現実を構造化することで、表面的なイベントの背後にある深層ドライバーを可視化する。</p>
+
+      <div class="bridge-card-full">
+        <div class="bridge-card-header" style="background: linear-gradient(90deg, var(--ci-rust), var(--ci-brown));">
+          <span class="bridge-icon">🌟</span>
+          <span class="nav-side">星コンパス（Wayfinding）</span>
+          <span class="bridge-arrow">⟷</span>
+          <span class="nav-side">CLA + PESTLE（Foresight）</span>
+        </div>
+        <div class="bridge-card-body">
+          <p>どちらも「未知の海」を事前に構造化するフレームワークである。星コンパスが夜空を方位セクターに分割するように、PESTLEはマクロ環境をドメインに分割し、CLAは現実を深度方向に層化する。構造化がなければ、あらゆるシグナルはノイズに過ぎない。構造があるからこそ、変化は意味を持つ異常として浮かび上がる。航法者は空を「見て」いるのではなく、構造を「通して読んで」いる。フォーサイト実践者もまた、現実を直接見ているのではなく、フレームワークを通して読解している。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div class="pillar" id="p2">
+      <div class="pillar-num">Parallel II</div>
+      <h3>弱いシグナルを読む — うねり・鳥・雲と弱シグナル理論</h3>
+
+      <p>航法者が依拠するシグナルは、いずれも「弱い」ものばかりである。うねりの向きのわずかな変化は、何百キロも先にある島や海底山脈の存在を示唆する。鳥の飛行方向は、夕方であれば陸地への帰還路を指し示す。雲の積み重なり方は陸地の上昇気流のパターンを反映する。これらはいずれも、単独では確証を与えない。しかし、複数のシグナルが同じ方向を示したとき、それは確信へと転化する。</p>
+
+      <p>弱シグナル理論（Elias Ansoff, 1975）は、戦略的サプライズの萌芽は、主流メディアや通常のスキャニングには現れない周辺領域に潜在的なシグナルとして先行して存在すると論じる。これらは単独では「ノイズ」と区別がつかない。しかし、異なる分野・異なる地域で似たようなシグナルが同時多発的に出現し始めたとき、それはトレンドやブレイクポイントの前兆として意味を持つ。</p>
+
+      <p>重要なのは、うねり読みが「波という概念を知ること」ではなく「特定のうねりパターンを体感し認識する能力」であるように、弱シグナル検出も「弱シグナルとは何かを知ること」ではなく「特定の文脈の中でシグナルとノイズを区別する判断力」であるという点だ。これは本質的に身体化・経験化された能力であり、フレームワークを知るだけでは獲得できない。</p>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div class="pillar" id="p3">
+      <div class="pillar-num">Parallel III</div>
+      <h3>不確かさの中でビジョンを保持する — 島のビジョンと望ましい未来</h3>
+
+      <blockquote>
+        <p>「もし島のビジョンを失ったなら、あなたは迷ってしまうだろう。」</p>
+        <cite>— マウ・ピアイルグ（ナイノア・トンプソンへの言葉）</cite>
+      </blockquote>
+
+      <p>伝統航法において、目的地の島は日が経つにつれ水平線の彼方に消え、星の見えない曇天の夜には何も見えなくなる。しかしそれでも航法者は「島はそこにある」という確信を維持し続けなければならない。この確信の維持が、揺らぐ情報の中で一貫した針路を保つことを可能にする。島のビジョンを失った瞬間、針路の判断基準が消え、漂流が始まる。</p>
+
+      <p>フォーサイトにおける「望ましい未来（Preferred Future）」は、まさにこの「島のビジョン」に対応する。ボロスの未来のコーンでは、Projected（外挿的未来）、Possible（可能な未来）、Probable（蓋然的未来）という記述的未来群と並んで、Preferable（望ましい未来）が独立したカテゴリとして位置づけられる。望ましい未来は予測の産物ではなく、意図と価値観の表明であり、航行の目的地である。不確実な現在においても「我々はどこを目指しているか」という問いに答え続けることが、一貫した戦略的判断を可能にする。</p>
+
+      <p>ここで見えてくるのは、予測と志向の非対称な関係である。予測は外界の状態について語り、志向は行為者の意図について語る。航法者は嵐の到来を予測するが、航海の中止を志向するとは限らない。嵐を予測し、それを乗り越えるための適応的な経路変更を行いながら、「島のビジョン」だけは手放さない。この構造が、フォーサイトにおける「シナリオ分析は条件付き予測であり、望ましい未来は無条件の志向である」という区分に対応している。</p>
+    </div>
+
+    <!-- Pillar 4 -->
+    <div class="pillar" id="p4">
+      <div class="pillar-num">Parallel IV</div>
+      <h3>ルートを適応させる — エタックと推測航法と適応的戦略</h3>
+
+      <p>ポリネシア伝統航法における「エタック（Etak）」の概念は、現代人の直感に反する。エタック的な世界観では、カヌーは動かず、島々の方が動く。出発した島は後ろへ流れ、目的地の島は前から近づいてくる。これはナビゲーションのための認知フレームであり、カヌー中心の座標系から世界を把握することで、複数の星・うねり・風の情報を統合した精密な位置推定を可能にする。</p>
+
+      <p>この「世界の側が動く」という視点の転換は、フォーサイトにおける「アウトサイド・イン思考」と構造的に同型である。従来の戦略思考は「自社の能力から出発して市場に向かう」インサイド・アウトの視点をとりがちだが、フォーサイトはマクロ環境の変化を起点として「世界がどう動くか」を先に考え、そこから自分たちの位置を逆算するアウトサイド・インの視点を採用する。カヌーではなく島々の動きを中心に置くエタックは、この視点転換の完璧なアナロジーである。</p>
+
+      <p>推測航法（Dead Reckoning）は別の次元で対応する。航法者は常に「最後に確認した位置」から、そこまでの速度・方向・経過時間を累積してリアルタイムに現在位置を推定する。確認できる情報が増えるたびに推定を更新し、誤差を修正する。これは継続的な環境スキャニングと仮説更新による「戦略的現在地把握」のプロセスそのものであり、単発のシナリオ作成ではなく動的に更新されるフォーサイト実践の核心部分に対応する。</p>
+
+      <div class="bridge-grid">
+        <div class="bridge-card">
+          <div class="bridge-card-header" style="background: linear-gradient(135deg, var(--ci-deep), var(--accent));">
+            <span class="bridge-icon">🌊</span>
+            <span class="nav-side">エタック（Etak）</span>
+          </div>
+          <div class="bridge-card-body">
+            <div class="bridge-label-pair">
+              <span class="badge badge-nav">カヌー静止・島が動く</span>
+              <span class="connector">↔</span>
+              <span class="badge badge-foresight">アウトサイド・イン思考</span>
+            </div>
+            <p>自分を中心に置かず、環境の動きを中心に置くことで、より精密な状況把握が可能になる認知フレームの転換。</p>
+          </div>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-card-header" style="background: linear-gradient(135deg, var(--ci-brown), var(--ci-rust));">
+            <span class="bridge-icon">🧭</span>
+            <span class="nav-side">推測航法</span>
+          </div>
+          <div class="bridge-card-body">
+            <div class="bridge-label-pair">
+              <span class="badge badge-nav">累積的位置推定</span>
+              <span class="connector">↔</span>
+              <span class="badge badge-foresight">リアルタイム環境スキャン</span>
+            </div>
+            <p>確定した過去から始まり、継続的に情報を追加・修正しながら現在位置を動的に更新するプロセス。</p>
+          </div>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-card-header" style="background: linear-gradient(135deg, #4a6741, #6b8f5e);">
+            <span class="bridge-icon">🐦</span>
+            <span class="nav-side">波紋の変曲点検出</span>
+          </div>
+          <div class="bridge-card-body">
+            <div class="bridge-label-pair">
+              <span class="badge badge-nav">うねり屈折パターン</span>
+              <span class="connector">↔</span>
+              <span class="badge badge-foresight">構造変化検出</span>
+            </div>
+            <p>通常パターンからの逸脱——うねりの乱れ——が、隠れた構造（島・海底山脈）の存在を示すように、トレンドの異常が構造変化を示す。</p>
+          </div>
+        </div>
+
+        <div class="bridge-card">
+          <div class="bridge-card-header" style="background: linear-gradient(135deg, #5a4a7a, #7a6a9a);">
+            <span class="bridge-icon">⭐</span>
+            <span class="nav-side">多シグナル統合</span>
+          </div>
+          <div class="bridge-card-body">
+            <div class="bridge-label-pair">
+              <span class="badge badge-nav">星+うねり+風+鳥</span>
+              <span class="connector">↔</span>
+              <span class="badge badge-foresight">PESTLE+CLA+シグナル</span>
+            </div>
+            <p>単一の強いシグナルではなく、複数の弱いシグナルを異なるドメインから並列統合することで精度を高める。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pillar 5 -->
+    <div class="pillar" id="p5">
+      <div class="pillar-num">Parallel V</div>
+      <h3>深い記憶による航法 — 口承伝統とCLAの神話層</h3>
+
+      <p>ポリネシアの航法知識は、数千年にわたって口承によって継承されてきた。それは単なる手順のマニュアルではない。航路の記憶は歌に、星の名前はチャントに、島々の位置関係は物語に埋め込まれている。この文化的記憶は「文明的な知恵のコーパス」であり、個々の航法者が直接体験できる範囲を超えた集合的認識の貯蔵庫として機能する。マウ・ピアイルグが太平洋の複数の島々の航路を記憶していたのは、彼個人の天才ではなく、彼を通じて表現された文明的記憶の厚みだった。</p>
+
+      <p>CLAの最深層——「神話・メタファー層（Myth/Metaphor Layer）」——は、この口承伝統と機能的に対応する。CLAでは、表面的なリテン（headlines）から始まり、社会的原因、世界観、そして最深部の「文明を支える神話・メタファー」へと掘り下げることで、変化の根本的なドライバーを探る。例えば「技術革新が経済成長をもたらす」という世界観の背後には「自然は克服すべき対象である」という神話的前提があり、その前提への挑戦なしには真の構造変化は理解できない。</p>
+
+      <p>口承伝統が「なぜその航路を行くのか」「なぜその星を信じるのか」に対する文化的正当性を与えるように、CLAの神話層は「なぜそのシナリオが可能と思えるのか」「なぜその変化が受け入れられないのか」に対する認識論的根拠を与える。どちらも、現象の「深部構造」を把握しようとする実践である。</p>
+    </div>
+  </section>
+
+  <div class="compass-divider" aria-hidden="true">— ✦ —</div>
+
+  <!-- Section 4: What Wayfinding teaches us -->
+  <section id="analysis">
+    <h2 class="section-title">4. ウェイファインディングが私たちの分析に教えること</h2>
+
+    <p>ここで立ち止まって問い直す必要がある。CLA・PESTLE・弱シグナル・ボロスのコーンを組み合わせることは、「ウェイファインディング」なのか、それとも単なる「ナビゲーション」なのか。この問いは些細に見えて、実は本質的である。</p>
+
+    <p>ナビゲーション（navigation）は、計器と地図を使って現在位置と目的地を把握し、最適経路を割り出す技術的プロセスである。それは主として「外部化された知識」に依存し、「正解としての経路」を前提とする。一方、ウェイファインディング（wayfinding）は、環境との継続的な対話を通じて位置を身体的に構築し続けるプロセスであり、「経路は発見するものではなく、創造するもの」という存在論的前提に立つ。</p>
+
+    <h3 class="sub-title">フォーサイト実践の三つの落とし穴</h3>
+
+    <p>フォーサイトがナビゲーション（計器依存）に堕落するのは、具体的に三つの場面においてである。第一は「フレームワークの手続き化」——CLAを実施すること自体が目的となり、洞察の生成よりも層の記入が優先される場合。第二は「強いシグナルへの偏向」——弱シグナルを探すと言いながら、注目されているトレンドや明確な数値データを中心に据えてしまう場合。第三は「ビジョンの喪失」——シナリオ分析が詳細化するほどに「最も蓋然的なシナリオ」が全ての思考を支配し、望ましい未来への志向が薄れる場合。</p>
+
+    <p>ウェイファインディングの視点から見ると、これら三つの落とし穴はいずれも同じ誤りに由来する。それは「身体を捨てること」である。ウェイファインディングにおける身体性——うねりを腰で感じること、星の位置を体内に刻み込むこと——は、フォーサイトにおける「フレームワークを手続きではなく直感として内在化すること」「シグナルを情報として処理するのではなく意味として感知すること」に対応する。</p>
+
+    <h3 class="sub-title">「知覚する実践者」としてのフォーサイター</h3>
+
+    <p>フォーサイト・メガ分析が真にウェイファインディングとしての資格を持つためには、実践者が「知覚する主体」でなければならない。分析ツールを使いながら、同時に自分自身の感覚——組織の中に漂うある種の緊張、業界の空気の変化、会話に繰り返し現れる特定のワードの変質——を手放さないことが必要だ。ナイノア・トンプソンは計器を使う現代の船も操縦できるが、伝統航法の訓練は彼が計器なしで世界を読む能力を与えた。その逆ではない。</p>
+
+    <div class="highlight-box">
+      <h4>核心的洞察</h4>
+      <p>フォーサイト・メガ分析をウェイファインディングたらしめるものは、CLAやPESTLEという「フレーム」ではなく、それを使う実践者が「環境と身体的に対話し続ける」という態度にある。構造が先にあり、知覚がそれに従うのではなく、知覚が先にあり、構造がそれを整理する——この順序が逆転したとき、フォーサイトはコンサルティングレポートになり、ウェイファインディングではなくなる。</p>
+    </div>
+
+    <p>具体的に言えば、PESTLEスキャンは「六つのセクターを順番に埋めること」ではなく「六つの方位から同時に世界を眺める認知習慣」として内在化されるべきだ。CLAの神話層分析は「哲学的反省の付録」ではなく「なぜ私たちはこのシグナルを重要と思い、あのシグナルを無視したのか」への自己審問として機能すべきだ。ボロスのコーンは「未来のタイポロジー」ではなく「今自分はどの種類の未来に向かって行動しているか」を感知するための内在化された羅針盤であるべきだ。</p>
+  </section>
+
+  <!-- Section 5: Malama Honua -->
+  <section id="malama">
+    <h2 class="section-title">5. マーラマ・ホヌア — 制御ではなくケアとしてのフォーサイト</h2>
+
+    <p>ナイノア・トンプソンが主導したホクレア号のワールドワイドボヤージュ（2014-2017）は、「マーラマ・ホヌア（Mālama Honua）」という言葉を旅の主題に掲げた。ハワイ語でMālamaは「ケアする・守る・育む」、Honuaは「地球・大地」を意味する。直訳すれば「地球を育む」であり、この旅は地球が一つのヴァカ（カヌー）であり、私たちはその乗組員であるという世界観を世界に届けることを目的とした。</p>
+
+    <div class="malama-banner">
+      <h3>Mālama Honua — 地球を育む</h3>
+      <p>三年かけて全世界を航海したホクレア号は、地球の気候危機・環境破壊・文化的多様性の喪失に対する警鐘を、航法という実践そのものを通じて鳴らし続けた。重要なのは、このメッセージが「警告」ではなく「ケア」の言葉だったことだ。人間は地球の管理者ではなく乗組員であり、問われるのは支配の技術ではなく同行の技術——共に海を渡ること——である。</p>
+    </div>
+
+    <p>この視点はフォーサイト実践に対して根本的な問いを投げかける。フォーサイトは「未来を制御するための技術」なのか、それとも「未来の中でより良く生きるためのケアの実践」なのか。</p>
+
+    <p>支配志向のフォーサイトは、リスクの最小化・脅威の回避・機会の確保という言語で語られる。それ自体は否定できない目的だが、その背後には「未来は管理可能なものだ」という世界観が潜む。一方、マーラマ・ホヌア的なフォーサイトは、未来という海の中で自分たちが何者であるかを問い、どのような乗組員たることを選ぶかを実践する。それはリスク管理ではなく、意味の探求に近い。</p>
+
+    <p>特に気候変動・テクノロジーの加速・社会的不平等の拡大という文明的課題に向き合うフォーサイトにおいて、「制御」の語りはしばしば無力化する。誰も気候変動を「制御」できないし、AIの進化を「管理」できない。しかし、「ケア」の語りは可能性を開く。カヌーの乗組員は嵐を制御しない。しかし嵐の中で何を守り、何を手放し、どこへ向かうかを選ぶ。その選択の質こそが、フォーサイトが高めようとする「未来を見る力・判断する力」の核心である。</p>
+
+    <p>フォーサイト・メガ分析がCLAの神話層まで掘り下げる理由の一つは、ここにある。「技術が問題を解決する」という神話、「成長は善である」という神話、「国家が社会を管理する」という神話——これらの神話を自覚することなしに、ケアとしてのフォーサイトは不可能だ。マウ・ピアイルグが言ったように「島のビジョンを失えば迷う」とすれば、私たちが「地球という島のビジョン」を失ったとき、いかなる分析ツールも私たちを救えない。</p>
+  </section>
+
+  <!-- Section 6: Conclusion -->
+  <section id="conclusion">
+    <h2 class="section-title">6. おわりに — 一人の航法者から一千万人の航法者へ</h2>
+
+    <p>ナイノア・トンプソンはこう語っている。彼の夢は「一千万人の航法者」を育てることだ。伝統航法の知識は、かつてほんの一握りの名人たちによって担われ、植民地化の波の中で途絶えかけた。それを復元した彼の使命は、その知識を再び少数の専門家の秘技に閉じ込めることではなく、コミュニティ全体に還流させることにある。航法は特権ではなく、コミュニティの知的共有財産であるべきだという信念だ。</p>
+
+    <p>UNESCO教育局が提唱する「未来リテラシー（Futures Literacy）」は、まさにこの方向を指している。未来についての思考は専門家が独占するものではなく、あらゆる市民が育てるべき認知能力である。クラブ・ド・ローマが「思考ツールの民主化」を訴え、シナリオ計画がコンサルタントの秘技からコミュニティ実践へと移行してきた歴史は、「一千万人の航法者」というビジョンと共鳴する。</p>
+
+    <div class="bridge-grid">
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, var(--ci-rust), var(--ci-orange));">
+          <span class="nav-side" style="font-size: 0.8rem;">伝統航法の復元（1976〜）</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">途絶えかけた知識の復元。ホクレア航海は技術的成功であるとともに、文化的アイデンティティの回復だった。コミュニティが自分たちの過去から未来への連続性を取り戻した実践。</p>
+        </div>
+      </div>
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #3a5c9e, #5a7cbe);">
+          <span class="nav-side" style="font-size: 0.8rem;">Futures Literacy（UNESCO）</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">未来についての思考を民主化する。フォーサイトの専門知識を市民・コミュニティレベルに還流させ、集合的な未来想像力を社会インフラとして構築する。</p>
+        </div>
+      </div>
+    </div>
+
+    <p>フォーサイト・メガ分析が一人の分析者による報告書に留まるとき、それは優れたナビゲーションレポートかもしれないが、ウェイファインディングではない。しかし、その分析がコミュニティの会話を触発し、組織内の多様な視点を統合し、意思決定者だけでなく現場の実践者たちが「自分たちの未来をどう読むか」を考え始めるプロセスとして機能したとき、それはウェイファインディングになる。</p>
+
+    <p>星コンパスを覚えるとは、三百二十八個の星の名前を暗記することではない。夜空を見上げたとき、全体の中での位置関係が直感的に体感できるようになることだ。CLAを身につけるとは、四つの層の名前を覚えることではない。あるニュースを読んだとき、その背後にある世界観と神話が自動的に浮かび上がるようになることだ。これが「内在化」であり、ウェイファインディングの核心である。</p>
+
+    <div class="conclusion-box">
+      <h3>分析の結論</h3>
+      <p>フォーサイト・メガ分析アプローチ——CLA、PESTLE、ボロスのコーン、弱シグナル検出の統合——は、ナイノア・トンプソンのウェイファインディング哲学という検証レンズを通したとき、単なる分析ツールのセットではなく、「未来の海を渡るための認識論的実践」としての潜在力を持つことが確認される。その潜在力が実現されるかどうかは、ツールの精度よりも、実践者が「島のビジョン」を保ちながら「弱いうねり」を感じ取り、「深い記憶」を活用して「ルートを適応させ」続けるという態度によって決まる。ウェイファインディングは目的地に着くことではない。海の上で、常に自分がどこにいるかを知り続けることである。フォーサイトもまた、未来を当てることではない。現在の中で、未来への方向性を感知し続けることである。マーラマ・ホヌア——地球という船の乗組員として、私たちは今どこにいるか。そしてどこへ向かおうとしているか。その問いへの応答が、フォーサイトの究極の使命である。</p>
+    </div>
+  </section>
+
+  <!-- Appendix: All 10 bridges summary -->
+  <section>
+    <h2 class="section-title">補論：10の架け橋 — ウェイファインディング↔フォーサイト対応マップ</h2>
+
+    <div class="bridge-grid">
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #783c28, #b07256);">
+          <span class="bridge-icon">🌟</span>
+          <span class="nav-side">星コンパス ↔ PESTLE</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">水平線を方位セクターに構造化する。未知の環境を、あらかじめ整理されたドメインへと分割することで、変化を意味として読み取る基盤を作る。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #3a5a8a, #5a7aaa);">
+          <span class="bridge-icon">🌊</span>
+          <span class="nav-side">エタック ↔ アウトサイド・イン</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">「カヌーは動かず島が動く」。自己を固定点にせず、環境を動く主体として認識することで、より精密な位置把握が可能になる視点転換。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #4a6741, #7a9771);">
+          <span class="bridge-icon">🏝</span>
+          <span class="nav-side">島のビジョン ↔ 望ましい未来</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">目に見えなくなっても「そこにある」と信じ続ける目的地。不確実な経路を一貫して航行するための認知的・存在論的アンカー。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #5a4a7a, #8a6aaa);">
+          <span class="bridge-icon">🔭</span>
+          <span class="nav-side">多シグナル統合 ↔ 弱シグナル検出</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">星・うねり・風・鳥を並列処理するように、PESTLE・CLA・シグナルを並列処理する。単一の強いシグナルではなく複合的な弱シグナルへの感度。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #7a5a28, #aa8a58);">
+          <span class="bridge-icon">🤲</span>
+          <span class="nav-side">うねり読み ↔ 暗黙知</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">腰で波を感じる身体的パターン認識。データ処理の前に存在する「感知する能力」としての暗黙知——フォーサイターの経験的直感。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #4a4a6a, #6a6a9a);">
+          <span class="bridge-icon">🧭</span>
+          <span class="nav-side">推測航法 ↔ 継続的スキャニング</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">最後に確認した地点から継続的に推定を更新する動的プロセス。単発分析ではなく、累積更新型のリアルタイム環境認識。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #6a3a2a, #9a6a4a);">
+          <span class="bridge-icon">📖</span>
+          <span class="nav-side">口承伝統 ↔ CLA神話層</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">歌・チャント・物語に埋め込まれた文明的記憶。個人の経験を超えた集合知のコーパスとして、現在の判断の深層基盤を形成する。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #3a6a5a, #5a9a7a);">
+          <span class="bridge-icon">〰️</span>
+          <span class="nav-side">波紋屈折 ↔ 構造変化検出</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">通常パターンからのうねりの乱れが隠れた構造の存在を示すように、トレンドの異常が表面に現れない構造変化の前兆となる。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #2a5a7a, #4a7aaa);">
+          <span class="bridge-icon">🌏</span>
+          <span class="nav-side">マーラマ・ホヌア ↔ 持続性フォーサイト</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">「制御する」ではなく「ケアする」。地球をヴァカ（カヌー）として、乗組員として責任を持つ——フォーサイトを意味探求の実践として位置づける。</p>
+        </div>
+      </div>
+
+      <div class="bridge-card">
+        <div class="bridge-card-header" style="background: linear-gradient(135deg, #7a3a1a, #ca7a3a);">
+          <span class="bridge-icon">👥</span>
+          <span class="nav-side">1千万人の航法者 ↔ 未来リテラシー</span>
+        </div>
+        <div class="bridge-card-body">
+          <p style="font-size: 0.85rem;">専門家の独占から市民の共有財産へ。フォーサイト能力を社会インフラとして民主化する。コミュニティ全体が「未来を読む」主体となる運動。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <p><strong>MIRA TUKU</strong> &nbsp;|&nbsp; Foresight Mega-Analysis Series</p>
+  <p style="margin-top: 0.5rem;">Wayfinding DB: 88 entries &nbsp;|&nbsp; 分析日: 2026-04-23 &nbsp;|&nbsp; Generated by Claude Code (claude-sonnet-4-6)</p>
+  <p style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.6;">本レポートはフォーサイト・メガ分析プロジェクトの一部として作成されました。ウェイファインディングデータベース（88エントリ）を基盤資料として使用しています。</p>
+</footer>
+
+</body>
+</html>

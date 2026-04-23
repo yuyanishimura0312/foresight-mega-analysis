@@ -311,6 +311,62 @@ body {
 .collapsible { display: none; margin-top: 0.5rem; }
 .collapsible.open { display: block; }
 
+/* Report cards */
+.report-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.2rem;
+}
+.report-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.report-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.report-card-header {
+  padding: 1.2rem 1.5rem;
+  color: #fff;
+  position: relative;
+}
+.report-card-header h3 {
+  font-size: 1rem; font-weight: 700; margin: 0;
+  line-height: 1.4;
+}
+.report-card-header .report-date {
+  font-size: 0.7rem; opacity: 0.7; margin-top: 0.3rem;
+}
+.report-card-body {
+  padding: 1.2rem 1.5rem;
+}
+.report-card-body p {
+  font-size: 0.82rem; color: #555; line-height: 1.7;
+  margin-bottom: 0.8rem;
+}
+.report-card-tags {
+  display: flex; flex-wrap: wrap; gap: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+.report-tag {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  background: #fef3e8; color: var(--accent);
+  border-radius: 3px; font-size: 0.68rem; font-weight: 600;
+}
+.report-card-link {
+  display: inline-block; padding: 0.4rem 1rem;
+  background: var(--accent); color: #fff;
+  border-radius: 5px; text-decoration: none;
+  font-size: 0.8rem; font-weight: 600;
+  transition: background 0.2s;
+}
+.report-card-link:hover { background: #5a2d1a; }
+.report-card-meta {
+  font-size: 0.72rem; color: #999; margin-top: 0.6rem;
+}
+
 table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
 th { text-align: left; padding: 0.4rem; background: #fef9f4; color: var(--accent);
      border-bottom: 2px solid var(--border); font-weight: 600; }
@@ -356,6 +412,7 @@ tr:hover td { background: #fefcfa; }
   <button onclick="showSection('cla')">Part 1: CLA分析</button>
   <button onclick="showSection('signals')">Part 2: シグナル</button>
   <button onclick="showSection('voros')">Part 3: Voros Cone</button>
+  <button onclick="showSection('reports')">Reports</button>
 </div>
 
 <div id="overview" class="section active">
@@ -382,6 +439,84 @@ tr:hover td { background: #fefcfa; }
   <div class="card" id="voros-cone"></div>
   <div class="card" id="voros-domains"></div>
   <div class="card" id="voros-trends"></div>
+</div>
+
+<div id="reports" class="section">
+  <div class="card">
+    <h2>Analysis Reports</h2>
+    <p style="font-size:0.85rem;color:#666;margin-bottom:1.5rem;">
+      フォーサイト大規模解析の結果に基づく深掘りレポートを蓄積しています。各レポートはデータ解析の成果を地の文（散文）形式で考察したものです。
+    </p>
+  </div>
+
+  <div class="report-grid">
+    <div class="report-card">
+      <div class="report-card-header" style="background:linear-gradient(135deg, #B07256, #7A4033);">
+        <h3>18メガトレンド × 岐路の選択</h3>
+        <div class="report-date">2026-04-23</div>
+      </div>
+      <div class="report-card-body">
+        <div class="report-card-tags">
+          <span class="report-tag">CLA</span>
+          <span class="report-tag">18メガトレンド</span>
+          <span class="report-tag">シグナル</span>
+          <span class="report-tag">Voros Cone</span>
+        </div>
+        <p>ミラツクの18メガトレンド分野と、CLA構造分析・411シグナル・Vorosフューチャーコーン解析を交差させ、各分野で「推すべき未来」と「留めるべき未来」を同定した統合レポート。</p>
+        <a href="reports/megatrend-crossroads.html" class="report-card-link">レポートを読む</a>
+        <div class="report-card-meta">約19,000字 / 4クラスター分析 / 18分野横断</div>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="report-card-header" style="background:linear-gradient(135deg, #CEA26F, #966D5E);">
+        <h3>ウェイファインディングとフォーサイト</h3>
+        <div class="report-date">2026-04-23</div>
+      </div>
+      <div class="report-card-body">
+        <div class="report-card-tags">
+          <span class="report-tag">Nainoa Thompson</span>
+          <span class="report-tag">Wayfinding</span>
+          <span class="report-tag">認識論</span>
+          <span class="report-tag">先住民知識</span>
+        </div>
+        <p>ホークレアの船長ナイノア・トンプソンのウェイファインディングの哲学と研究成果を、本解析の方法論と照合。未来への俯瞰力・判断力の向上メカニズムを検証。</p>
+        <a href="reports/wayfinding-foresight.html" class="report-card-link">レポートを読む</a>
+        <div class="report-card-meta">約14,000字 / 5つの構造的平行 / 88エントリDB</div>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <div class="report-card-header" style="background:linear-gradient(135deg, #DC8766, #B07256);">
+        <h3>CLA構造分析 + シグナル + Voros Cone</h3>
+        <div class="report-date">2026-04-23</div>
+      </div>
+      <div class="report-card-body">
+        <div class="report-card-tags">
+          <span class="report-tag">基礎レポート</span>
+          <span class="report-tag">36年間CLA</span>
+          <span class="report-tag">411シグナル</span>
+          <span class="report-tag">22,546予測</span>
+        </div>
+        <p>3つのデータベースを統合した基礎解析レポート。CLA構造分析による現代社会の立ち位置確認、シグナルの網羅的抽出・領域分類、Vorosフューチャーコーン8象限分類。</p>
+        <a href="report.html" class="report-card-link">レポートを読む</a>
+        <div class="report-card-meta">基礎分析 / 統合考察 / 方法論</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.5rem;">
+    <h2>データソース</h2>
+    <table>
+      <tr><th>データベース</th><th>レコード数</th><th>用途</th></tr>
+      <tr><td>CLA DB</td><td>342分析 + 53統合 + 10パラダイムシフト</td><td>36年間の構造分析</td></tr>
+      <tr><td>Signal DB</td><td>411シグナル</td><td>弱いシグナル検出・5軸スコアリング</td></tr>
+      <tr><td>Foresight KB</td><td>22,546予測 + 5,099シナリオ</td><td>外部フォーサイト統合</td></tr>
+      <tr><td>PESTLE DB</td><td>223,208記事</td><td>6カテゴリのニュース基盤</td></tr>
+      <tr><td>Wayfinding DB</td><td>88エントリ（8テーブル）</td><td>ウェイファインディング知識体系</td></tr>
+      <tr><td>未来予測カード</td><td>557枚 / 18分野 / 19冊</td><td>書籍由来の構造化予測</td></tr>
+    </table>
+  </div>
 </div>
 
 <script>
