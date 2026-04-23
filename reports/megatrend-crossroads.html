@@ -422,6 +422,129 @@
       letter-spacing: 0.1em;
     }
 
+    /* CLA Questions */
+    .cla-questions-intro {
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .cla-layer-label {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .cla-layer-label.litany { background: #fde8d8; color: #8b3a0f; }
+    .cla-layer-label.system { background: #e8f0fe; color: #2a4a8f; }
+    .cla-layer-label.worldview { background: #e8f5e8; color: #1a5a1a; }
+    .cla-layer-label.myth { background: linear-gradient(135deg, var(--accent), #9a4e35); color: #fff; }
+
+    .cla-q-block {
+      margin-bottom: 40px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cla-q-block:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+    .cla-q-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--c9);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .cla-q-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+    .cla-q-body {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--text);
+      max-width: 720px;
+    }
+    .cla-q-body p { margin-bottom: 1em; }
+    .cla-q-body p:last-child { margin-bottom: 0; }
+
+    .cla-q-refs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .cla-q-ref {
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      background: #f5f0e8;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .cla-layer-group {
+      margin-bottom: 48px;
+    }
+    .cla-layer-group:last-child { margin-bottom: 0; }
+
+    .cla-structure-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0 20px;
+      font-size: 13.5px;
+    }
+    .cla-structure-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c9);
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .cla-structure-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    .cla-structure-table tr:last-child td { border-bottom: none; }
+    .cla-structure-table .layer-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .cla-structure-table .layer-badge.l1 { background: #fde8d8; color: #8b3a0f; }
+    .cla-structure-table .layer-badge.l2 { background: #e8f0fe; color: #2a4a8f; }
+    .cla-structure-table .layer-badge.l3 { background: #e8f5e8; color: #1a5a1a; }
+    .cla-structure-table .layer-badge.l4 { background: var(--accent); color: #fff; }
+
+    .cla-closing-box {
+      background: linear-gradient(135deg, var(--accent) 0%, #5a2a18 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-top: 36px;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+    .cla-closing-box p { opacity: 0.92; margin-bottom: 1em; }
+    .cla-closing-box p:last-child { margin-bottom: 0; }
+
     @media (max-width: 768px) {
       .header-top, .header-body, .container, .toc-inner, .site-footer { padding-left: 24px; padding-right: 24px; }
       .header-body h1 { font-size: 1.6rem; }
@@ -482,6 +605,7 @@
       <a href="#cluster-body"><span class="toc-num">4</span>身体と生命のクラスター（2領域）</a>
       <a href="#cluster-earth"><span class="toc-num">2</span>地球と生存のクラスター（3領域）</a>
       <a href="#synthesis"><span class="toc-num">終</span>総合的考察 — 交差点で何を選ぶか</a>
+      <a href="#cla-questions"><span class="toc-num">附</span>CLAからの10の問い — 深層構造への問いかけ</a>
     </div>
   </div>
 </nav>
@@ -845,6 +969,220 @@
       <p>ミラツクにとっての実践的含意は、以下の三点に集約される。第一に、テクノロジーへの接触において「アクセスの民主化」と「意思決定からの排除」を常に同時に問うこと。技術を使うことと、技術に関する意思決定に参加することは別の問題であり、後者こそが権力の中枢である。第二に、「閉じる国家と停滞する社会」（領域17）という最もカードが少なく最もリアルな未来を、積極的に可視化し議論の俎上に乗せ続けること。楽観バイアスを補正する最も実効的な手段は、語られない未来を名指しすることだ。第三に、「価値から意味へ」の転換を制度的に根付かせるための長期的・持続的な活動基盤を維持すること。これは短期的な成果より長い時間軸で働く変化であり、文明転換期における市民社会の本質的な仕事である。</p>
 
       <p>18のメガトレンド領域は互いに独立した現象ではない。それらは「複合危機と文明転換の時代」という単一の地殻変動の異なる断面として現れている。CLA・シグナル・Vorosの三つの分析レンズを重ねることで初めて見えてくるのは、私たちが今、人類の集合的選択の密度が異常に高い時期を生きているという認識である。このような時代においてフォーサイトを持つことは、単なる知的作業ではない。どの方向へ意志を向けるかを選ぶための、倫理的実践である。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLA Questions -->
+<section class="section" id="cla-questions">
+  <div class="container">
+    <p class="section-label">附章</p>
+    <h2 class="section-title">CLAからの10の問い</h2>
+    <p class="section-sub">因果階層分析の4層構造が、メガトレンド交差点に投げかける深層的問いかけ</p>
+
+    <div class="cla-questions-intro">
+      CLA（因果階層分析）は、事象の表面から深層の神話に至る4つの層——事象（Litany）・システム（Social Causes）・世界観（Worldview）・神話（Myth/Metaphor）——を降りながら、問題の根本構造を明らかにする分析手法である。本レポートの18領域・4クラスター・411シグナル・22,546件の予測分析から得られた知見を、CLAの階層に沿って10の問いとして再構成した。これらの問いは、分析結果を「答え」として受け取るのではなく、その分析自体が依拠している前提や盲点を照らし出すために設計されている。表面から深層へ、そして最終的に「問い自体の前提は何か」というメタ的反省へと至る構造を持つ。
+    </div>
+
+    <!-- Layer 1: Litany -->
+    <div class="cla-layer-group">
+      <span class="cla-layer-label litany">Layer 1 — 事象層 Litany</span>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 01</div>
+        <h3 class="cla-q-title">楽観バイアスの盲点は何を隠しているか</h3>
+        <div class="cla-q-body">
+          <p>Vorosの未来予測22,546件が示す7.7:1の楽観バイアスは、どの「望ましくない未来」を体系的に不可視化しているか。領域17（閉じる国家と停滞する社会）のカード数がゼロであるという事実は、フォーサイト文献が構造的に見落としてきた現実の存在を示唆している。</p>
+          <p>予測の集合体は、予測者たちの集団的な世界観を反映する。「技術的解決による前進」を見込む傾向は、「ゆっくりとした崩壊」や「制度の機能不全による漸進的劣化」という、劇的ではないが着実に進行するシナリオを体系的に過小評価する。民主主義後退指数の悪化、国際協調の空洞化、移民制限の強化——これらの現実進行中のシグナルが、予測文献において十分に扱われていないとすれば、私たちの「未来を見る眼」そのものに構造的な偏りがある。問うべきは、「どの未来が見えていないか」だけではなく、「なぜ見えないのか」である。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">Voros 7.7:1 楽観バイアス</span>
+          <span class="cla-q-ref">領域17: カード数ゼロ</span>
+          <span class="cla-q-ref">22,546予測の構造的偏り</span>
+        </div>
+      </div>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 02</div>
+        <h3 class="cla-q-title">シグナル最大クラスターの集中は何を意味するか</h3>
+        <div class="cla-q-body">
+          <p>411シグナルのうち140件（34%）が「地政学と権力」に集中している。この偏りは、テクノロジー・気候・健康といった他の全領域が、結局のところ権力闘争の従属変数に過ぎないことを意味しているのか。それとも、権力シグナルの過剰検出そのものが分析の構造的バイアスなのか。</p>
+          <p>AI開発競争は米中覇権争いの文脈で語られ、気候変動対策は国家間交渉の力学に規定され、資源管理は安全保障の問題として枠組みされる。あらゆる技術的・社会的課題が「権力」の言語で翻訳される現象は、問題の本質を映しているのか、それとも私たちの分析フレーム自体が権力中心的に構成されているのか。シグナルの分布は現実の鏡であると同時に、観察者の視座の鏡でもある。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">地政学と権力: 140件</span>
+          <span class="cla-q-ref">AIと認知: 51件</span>
+          <span class="cla-q-ref">法と統治: 49件</span>
+          <span class="cla-q-ref">気候と環境: 44件</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 2: System -->
+    <div class="cla-layer-group">
+      <span class="cla-layer-label system">Layer 2 — システム層 Social Causes</span>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 03</div>
+        <h3 class="cla-q-title">技術のアクセスと技術の意思決定は分離可能か</h3>
+        <div class="cla-q-body">
+          <p>AIや身体拡張技術の「民主化」が進む一方で、その設計・配分・規制に関する意思決定権は少数のプラットフォーム企業と国家に集中し続けている。「使える」ことと「決められる」ことの乖離は、技術的解放の物語のもとでかえって拡大しているのではないか。</p>
+          <p>「高度な専門技術の一般化」（領域14）は最も希望ある軌跡として描かれているが、生成AIの基盤モデルを開発・管理できる主体は世界で数社に限られる。利用の裾野が広がるほど、その基盤を握る者の影響力は増す。オープンソースAIの維持は一つの対抗手段だが、その持続可能性は資本集約的な計算資源の配分構造に依存している。アクセスの民主化と意思決定の民主化は、別の制度設計を必要とする別の問題であり、前者が後者を自動的に実現することはない。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">領域14: 高度な専門技術の一般化</span>
+          <span class="cla-q-ref">領域3: テクノロジーの非人間的活用</span>
+          <span class="cla-q-ref">AIと認知シグナル 51件</span>
+        </div>
+      </div>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 04</div>
+        <h3 class="cla-q-title">コモンズは資本主義システムの中で存続できるか</h3>
+        <div class="cla-q-body">
+          <p>資源（領域4）・宇宙（領域7）・データ・健康情報をコモンズとして管理する構想は、ウロボロス的資本主義が駆動する囲い込みの力学の中でいかにして制度的に維持されうるのか。歴史的なコモンズの解体パターン——エンクロージャー——は、デジタル・宇宙・バイオの新フロンティアでも反復されているのではないか。</p>
+          <p>軌道リソースの商業利用、遺伝子配列データの特許化、水源のスマート管理における民間委託——いずれも「効率性」と「技術革新」の名のもとに、共有資源が私的所有へと移行する経路を示している。コモンズ的ガバナンスの制度設計は理論的には可能だが、その維持には権力の非対称性に抗い続ける持続的な社会運動と法的枠組みが必要となる。「要塞化する民主主義」の神話が支配的な状況下では、コモンズは国家安全保障の文脈に回収されやすく、その共有性は形骸化する。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">領域4: 資源のスマートコントロール</span>
+          <span class="cla-q-ref">領域7: 宇宙に進出する人類</span>
+          <span class="cla-q-ref">神話: ウロボロス的資本主義</span>
+        </div>
+      </div>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 05</div>
+        <h3 class="cla-q-title">格差は三重化しているか</h3>
+        <div class="cla-q-body">
+          <p>経済格差（領域11）・認知格差（AIアクセスの不均等）・生物学的格差（身体拡張技術の偏在）の三つは、互いに独立した問題ではなく相互に増幅する構造を持っているのではないか。もしそうであれば、単一領域での介入は他の二層での格差加速によって無効化される可能性がある。</p>
+          <p>経済的に恵まれた層が高性能AIへのアクセスを通じて認知能力を拡張し、さらに先端医療・身体拡張技術を利用することで生物学的な優位性を獲得する——この三重の格差が世代間で固定化されるとき、社会的流動性は構造的に閉ざされる。教育の平等化という従来型の介入策は、認知と身体の層での格差拡大には追いつかない可能性がある。この三重構造を認識したうえで、どのような統合的介入が設計可能かが問われている。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">領域11: 拡大する格差と新たな紛争</span>
+          <span class="cla-q-ref">領域2: 身体機能の拡張</span>
+          <span class="cla-q-ref">領域14: 専門技術の一般化</span>
+          <span class="cla-q-ref">身体と生命クラスター: 121枚</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 3: Worldview -->
+    <div class="cla-layer-group">
+      <span class="cla-layer-label worldview">Layer 3 — 世界観層 Worldview</span>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 06</div>
+        <h3 class="cla-q-title">「技術で解決できる」という世界観は、いつ問題の一部になるか</h3>
+        <div class="cla-q-body">
+          <p>気候変動（領域8）における脱炭素技術への期待、健康（領域12）における個別化医療への信頼、資源（領域4）におけるスマート管理への依存——これらすべてに通底する「技術的解決主義」は、どの時点で「今すぐ止めるべきことを先送りする装置」として機能し始めるのか。</p>
+          <p>Vorosの7.7:1という楽観バイアスは、まさにこの「技術への先送り」の集合的表現である。「将来の技術で解決できる」という信念は、現在の排出削減コミットメントの加速、既存インフラへのロックイン回避、消費パターンの変革といった「今すぐの行動」の緊急性を低下させる。技術的可能性への信頼そのものは否定すべきではないが、その信頼が「現在の不作為の言い訳」に転化する閾値を見極める世界観が必要とされている。CLAが示す「地球と生存」クラスターの核心的問いは、「何ができるか」ではなく「何を今すぐ止めるか」である。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">領域8: 気候変動と生存圏の縮小</span>
+          <span class="cla-q-ref">領域12: 67枚（最多カード数）</span>
+          <span class="cla-q-ref">Voros 7.7:1 楽観バイアス</span>
+        </div>
+      </div>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 07</div>
+        <h3 class="cla-q-title">「多様性」は誰のための言葉か</h3>
+        <div class="cla-q-body">
+          <p>「多様性と共にある発展」（領域15）が広く語られる一方、その言説の担い手は特定の属性・階層に偏っている。多様性が「推進すべき価値」から「マーケティング用語」へ、さらには「既存権力構造の正当化装置」へと変質する経路を、私たちはどのようにして識別し、防ぐことができるのか。</p>
+          <p>ダイバーシティ言説の形骸化は既にシグナルとして観察されている。表層的な多様性ブランディングが流通する中で、実質的な権力・資源・機会の再配分を伴わない「包摂の物語」が、むしろ構造的排除を覆い隠す機能を果たしている場面がある。「閉じる国家と停滞する社会」（領域17）と結合したとき、多様性の抑圧が「民主的に」正当化されるリスクは現実的である。多様性の「実質化」とは、誰が変化を決定するかという問いそのものを開き続けることにほかならない。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">領域15: 多様性と共にある発展</span>
+          <span class="cla-q-ref">領域18: 暮らしの基盤の多様化</span>
+          <span class="cla-q-ref">領域17: 閉じる国家（カード数ゼロ）</span>
+        </div>
+      </div>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 08</div>
+        <h3 class="cla-q-title">長寿は「祝福」か「負荷」か——その問い自体が何を映しているか</h3>
+        <div class="cla-q-body">
+          <p>領域12（67枚、18領域中最多のカード数）に対する圧倒的な楽観的予測は、長寿を「勝ち取るべき成果」として描いている。しかし「活躍できる高齢者」と「できない高齢者」という分断的言説は、人間の価値を生産性で測る世界観の延長線上にある。</p>
+          <p>100年以上の人生を前提とした社会設計は、年金・雇用・教育の制度的再設計を要求する。しかしそれ以上に根本的なのは、「長く生きること」の意味を生産性から切り離す世界観の構築である。「ウロボロス的資本主義」の神話が長寿社会に出会うとき、高齢者を経済的貢献度で評価する言説が一層強化される。「価値から意味へ」という転換（領域9・10）は、まさにこの世界観の更新を求めている。長寿の問題は、医療技術の問題ではなく意味の問題である。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">領域12: 身体的健康と長寿（67枚）</span>
+          <span class="cla-q-ref">領域9: 経済以外の新たな価値</span>
+          <span class="cla-q-ref">領域10: 社会的活動の当たり前化</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layer 4: Myth -->
+    <div class="cla-layer-group">
+      <span class="cla-layer-label myth">Layer 4 — 神話層 Myth / Metaphor</span>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 09</div>
+        <h3 class="cla-q-title">四つの神話のうち、最も更新困難なものはどれか</h3>
+        <div class="cla-q-body">
+          <p>「秩序としての強いリーダー」「AI救済／AI黙示録」「要塞化する民主主義」「ウロボロス的資本主義」——これら四つの深層神話は相互に補強し合っている。しかし、その中で最も「自己修正メカニズムを持たない」のはどれか。逆に、最も脆い——代替神話に置き換わりやすい——のはどれか。</p>
+          <p>神話の更新は、制度設計やテクノロジーの変化よりもはるかに困難であり、かつはるかに根本的な変化である。ウロボロス的資本主義は、自らの危機すらも商品化して取り込む自己免疫性を持つ点で、最も更新困難な候補と見なせる。一方、「AI救済／AI黙示録」は技術発展の現実によって比較的短期間で修正される可能性がある。神話の更新を意図的に試みるとすれば、どの神話から手をつけるべきで、その際にどのような「対抗神話」——相互扶助の物語、ケアの経済、多元的な知の共存——が有効か。神話は論理では書き換えられない。新しい物語によってのみ、古い物語は退場する。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">秩序としての強いリーダー</span>
+          <span class="cla-q-ref">AI救済 / AI黙示録</span>
+          <span class="cla-q-ref">要塞化する民主主義</span>
+          <span class="cla-q-ref">ウロボロス的資本主義</span>
+        </div>
+      </div>
+
+      <div class="cla-q-block">
+        <div class="cla-q-num">QUESTION 10</div>
+        <h3 class="cla-q-title">「複合危機と文明転換の時代」という物語は、解放的か、それとも麻痺的か</h3>
+        <div class="cla-q-body">
+          <p>本レポート自体が採用している「文明転換期」という枠組みは、行動への意志を喚起する神話として機能しているのか、それとも問題の巨大さに圧倒されて「何をしても間に合わない」という麻痺を生む神話として機能しているのか。</p>
+          <p>「交差点で何を選ぶか」という問いかけは、選択の主体が存在することを前提としている。しかし、その主体性の根拠はどの神話によって支えられているのか。18領域の「推すべき未来」と「留めるべき未来」を峻別し、能動的な選択を行うべきだと述べるとき、私たちは「意志ある選択によって未来は変えられる」という、それ自体が一つの信念体系に依拠している。この信念は、個人の無力感や制度的膠着を前にして持ちこたえられるだけの強度を持っているか。CLA分析の最終的な問いは、分析そのものに向けられなければならない——このレポートが依って立つ「フォーサイトは倫理的実践である」という前提もまた、一つの神話ではないか。そしてその神話を問い直すことは、フォーサイトを放棄することではなく、フォーサイトをより深く生きることである。</p>
+        </div>
+        <div class="cla-q-refs">
+          <span class="cla-q-ref">複合危機と文明転換の時代</span>
+          <span class="cla-q-ref">フォーサイトの倫理的実践</span>
+          <span class="cla-q-ref">CLA再帰的分析</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structure table -->
+    <table class="cla-structure-table">
+      <thead>
+        <tr>
+          <th>CLA層</th>
+          <th>問い</th>
+          <th>核心テーマ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="layer-badge l1">事象</span></td>
+          <td>Q1, Q2</td>
+          <td>予測の構造的盲点、シグナル偏在の意味</td>
+        </tr>
+        <tr>
+          <td><span class="layer-badge l2">システム</span></td>
+          <td>Q3, Q4, Q5</td>
+          <td>アクセス vs 決定権、コモンズの持続性、三重格差の相互増幅</td>
+        </tr>
+        <tr>
+          <td><span class="layer-badge l3">世界観</span></td>
+          <td>Q6, Q7, Q8</td>
+          <td>技術的解決主義の閾値、多様性の空洞化、長寿の意味</td>
+        </tr>
+        <tr>
+          <td><span class="layer-badge l4">神話</span></td>
+          <td>Q9, Q10</td>
+          <td>深層神話の更新可能性、フレーム自体の再帰的検証</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cla-closing-box">
+      <p>これら10の問いは、表面の「何が起きているか」から深層の「何がそれを駆動しているか」へ、そして最終的に「問い自体の前提は何か」というメタ的反省へと降りていく構造を持っている。CLA分析の真価は、答えを提供することにではなく、問いの質を深めることにある。</p>
+      <p>フォーサイトを実践する者にとって、最も危険なのは「自分は見えている」という確信である。問い10が示すように、この分析を行う私たち自身もまた、特定の神話の中にいる。CLAの階層を降りるという行為は、最終的には自分自身の立ち位置を問い直すことに帰着する。18のメガトレンド領域が描く「文明転換期」において、これらの問いと共に生きることが、フォーサイトを単なる知的演習から倫理的実践へと転換させる条件となる。</p>
     </div>
   </div>
 </section>
