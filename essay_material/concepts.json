@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "name": "Mālama Honua",
+    "name_ja": "マーラマ・ホヌア",
+    "category": "philosophy",
+    "definition": "地球を守る・世話をする",
+    "philosophical_meaning": "人間は地球の管理者であり、自然との関係は搾取ではなく相互扶助であるべきという世界観。",
+    "foresight_connection": "持続可能性フォーサイト。未来予測を「支配」ではなく「世話」の文脈で捉え直す。",
+    "source": "Hawaiian philosophy"
+  },
+  {
+    "id": 2,
+    "name": "Way of the Canoe",
+    "name_ja": "カヌーの道",
+    "category": "philosophy",
+    "definition": "航海の原則を個人・コミュニティ・国家レベルで実践する哲学",
+    "philosophical_meaning": "自己・他者・自然環境・文化的環境を尊重して世話をすること。航海＝生き方そのもの。",
+    "foresight_connection": "組織フォーサイトの実践倫理。未来を読む技術だけでなく、それをどう活用するかの倫理的枠組み。",
+    "source": "Nainoa Thompson"
+  },
+  {
+    "id": 3,
+    "name": "Vision of the Island",
+    "name_ja": "島のビジョン",
+    "category": "navigation_philosophy",
+    "definition": "到達すべき目的地の精神的イメージを常に維持すること",
+    "philosophical_meaning": "マウの教え：島のビジョンを失ったら迷子になる。最終目標のイメージ保持と柔軟なルート変更の両立。",
+    "foresight_connection": "ビジョナリー・リーダーシップ。長期的目標の保持と短期的適応の両立。Preferable Futureの設定。",
+    "source": "Mau Piailug"
+  },
+  {
+    "id": 4,
+    "name": "Pwo",
+    "name_ja": "プウォ",
+    "category": "cultural",
+    "definition": "カロリン諸島の師匠航法師としての正式な入門・認定儀式",
+    "philosophical_meaning": "師匠だけが保有する秘密の航法知識と詠唱を弟子に伝える権限。2007年にマウが56年ぶりに復活。",
+    "foresight_connection": "暗黙知の制度的継承。形式知化できない知識をどう次世代に伝えるかの実践モデル。",
+    "source": "Carolinian tradition"
+  },
+  {
+    "id": 5,
+    "name": "Palu",
+    "name_ja": "パル",
+    "category": "cultural",
+    "definition": "師匠航法師の称号",
+    "philosophical_meaning": "航法技術の全てを習得し、弟子を指導する資格を持つ者。",
+    "foresight_connection": "マスターレベルの専門性。パターン認識の直観的レベルに到達した実践者。",
+    "source": "Micronesian tradition"
+  },
+  {
+    "id": 6,
+    "name": "Hawaiian Renaissance",
+    "name_ja": "ハワイアン・ルネサンス",
+    "category": "cultural_movement",
+    "definition": "1970-80年代のハワイ先住民文化復興運動",
+    "philosophical_meaning": "ホークレアの航海が触媒となり、ハワイ語・フラ・チャント・伝統工芸の復活をもたらした。",
+    "foresight_connection": "文化的フォーサイト。過去の知恵を復活させることで未来の可能性を拡張する。",
+    "source": "Hawaiian history"
+  },
+  {
+    "id": 7,
+    "name": "Talk of the Sea",
+    "name_ja": "海の声",
+    "category": "epistemology",
+    "definition": "海が語りかけるサインを全感覚で聴くこと",
+    "philosophical_meaning": "海は生きたシステムであり、注意深く聴けば方向を教えてくれる。多感覚的知識統合の実践。",
+    "foresight_connection": "環境スキャニング。組織の外部環境からの微弱なシグナルに「耳を澄ます」実践。",
+    "source": "Traditional knowledge"
+  },
+  {
+    "id": 8,
+    "name": "Polynesian Triangle",
+    "name_ja": "ポリネシア三角形",
+    "category": "geography",
+    "definition": "ハワイ・イースター島・ニュージーランドを頂点とする太平洋上の三角形",
+    "philosophical_meaning": "各頂点間6,000-7,000km。3,000年にわたる人類史上最大の海洋移住の舞台。",
+    "foresight_connection": "グローバルスケールのシステム思考。巨大な不確実性空間を構造化して探索する。",
+    "source": "Pacific geography"
+  },
+  {
+    "id": 9,
+    "name": "Wayfinding vs Navigation",
+    "name_ja": "ウェイファインディング対ナビゲーション",
+    "category": "epistemology",
+    "definition": "ウェイファインディング＝器具なしの全身的感知、ナビゲーション＝器具を用いた計算",
+    "philosophical_meaning": "ウェイファインディングは身体知・暗黙知の統合。ナビゲーションは形式知・ツールの活用。両者は対立ではなく補完。",
+    "foresight_connection": "質的フォーサイトと量的予測の関係。データ分析と直感的判断の統合。",
+    "source": "Conceptual distinction"
+  },
+  {
+    "id": 10,
+    "name": "Adaptive Wayfinding",
+    "name_ja": "適応的ウェイファインディング",
+    "category": "strategy",
+    "definition": "ビジョンを保持しつつ環境に応じてルートを柔軟に変更する航法姿勢",
+    "philosophical_meaning": "目的地は変えないがルートは状況に応じて変える。風・海流・天候に適応しながら目標に向かう。",
+    "foresight_connection": "適応的戦略。Preferred Futureを目標としつつ、環境変化に応じて経路を修正するアプローチ。",
+    "source": "Strategic concept"
+  },
+  {
+    "id": 11,
+    "name": "Indigenous Futures",
+    "name_ja": "先住民的未来思考",
+    "category": "epistemology",
+    "definition": "先住民の知識体系に基づく未来の捉え方",
+    "philosophical_meaning": "過去・現在・未来を直線ではなく循環的・関係的に捉える。祖先の知恵が未来への航路を示す。",
+    "foresight_connection": "非線形フォーサイト。西洋的な直線的予測とは異なる、関係性・循環性に基づく未来構想。",
+    "source": "Indigenous knowledge"
+  },
+  {
+    "id": 12,
+    "name": "Ecological Foresight",
+    "name_ja": "生態的フォーサイト",
+    "category": "epistemology",
+    "definition": "生態系の一部としての人間が、環境サインから未来を読む実践",
+    "philosophical_meaning": "航法師は海洋生態系の一部として、生物・気象・海流のパターンから方位と到達地を判断する。",
+    "foresight_connection": "地球システムとの関係性の中でのフォーサイト。人間を環境から分離しない未来思考。",
+    "source": "Conceptual framework"
+  },
+  {
+    "id": 13,
+    "name": "Collective Memory Navigation",
+    "name_ja": "集合的記憶による航法",
+    "category": "knowledge_system",
+    "definition": "世代を超えて蓄積された航法知識を口承で継承する実践",
+    "philosophical_meaning": "数千年の航海経験が詠唱・物語・教育儀式を通じて圧縮・保存・伝達される。",
+    "foresight_connection": "組織的知識管理。暗黙知を含む深い知識の世代間継承。CLA深層の神話レベルの知識。",
+    "source": "Traditional practice"
+  },
+  {
+    "id": 14,
+    "name": "Multi-sensory Integration",
+    "name_ja": "多感覚的統合",
+    "category": "cognition",
+    "definition": "視覚・触覚・聴覚・嗅覚を統合して環境を把握する認知的実践",
+    "philosophical_meaning": "星を見る、うねりを感じる、風を聞く、海の匂いを嗅ぐ。全身が計器となる。",
+    "foresight_connection": "多元的環境スキャニング。定量データだけでなく定性的・身体的感覚も含めた統合的判断。",
+    "source": "Cognitive science"
+  },
+  {
+    "id": 15,
+    "name": "10 Million Navigators",
+    "name_ja": "1,000万人のナビゲーター",
+    "category": "vision",
+    "definition": "トンプソンが掲げる次世代育成の目標",
+    "philosophical_meaning": "一人の偉大な航法師ではなく、1,000万人がウェイファインディングの精神を持つ世界を目指す。",
+    "foresight_connection": "フォーサイト・リテラシーの民主化。未来を読む能力を少数の専門家から広く市民へ。",
+    "source": "Nainoa Thompson"
+  }
+]

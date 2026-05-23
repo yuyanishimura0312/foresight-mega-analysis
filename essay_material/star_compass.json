@@ -1,0 +1,106 @@
+[
+  {
+    "id": 1,
+    "house_name": "Lā (East)",
+    "meaning": "太陽（東）",
+    "direction_degrees": 90.0,
+    "quadrant": "East",
+    "description": "真東。太陽が春分・秋分に昇る位置。基本方位。"
+  },
+  {
+    "id": 2,
+    "house_name": "Lā (West)",
+    "meaning": "太陽（西）",
+    "direction_degrees": 270.0,
+    "quadrant": "West",
+    "description": "真西。太陽が春分・秋分に沈む位置。"
+  },
+  {
+    "id": 3,
+    "house_name": "Manu (North)",
+    "meaning": "鳥（北）",
+    "direction_degrees": 0.0,
+    "quadrant": "North",
+    "description": "真北。北極星の方向。鳥は方位の指標。"
+  },
+  {
+    "id": 4,
+    "house_name": "Manu (South)",
+    "meaning": "鳥（南）",
+    "direction_degrees": 180.0,
+    "quadrant": "South",
+    "description": "真南。南十字星の方向。"
+  },
+  {
+    "id": 5,
+    "house_name": "ʻĀina",
+    "meaning": "土地",
+    "direction_degrees": 67.5,
+    "quadrant": "NE",
+    "description": "東北東。大地との接続を象徴。"
+  },
+  {
+    "id": 6,
+    "house_name": "Noio",
+    "meaning": "アジサシ",
+    "direction_degrees": 56.25,
+    "quadrant": "NE",
+    "description": "北東。海鳥の飛行パターン。"
+  },
+  {
+    "id": 7,
+    "house_name": "Nālani",
+    "meaning": "天空",
+    "direction_degrees": 33.75,
+    "quadrant": "NNE",
+    "description": "北北東。天空の広がり。"
+  },
+  {
+    "id": 8,
+    "house_name": "Nāleo",
+    "meaning": "声",
+    "direction_degrees": 22.5,
+    "quadrant": "NNE",
+    "description": "北北東。星が語りかける声。"
+  },
+  {
+    "id": 9,
+    "house_name": "Haka",
+    "meaning": "空（から）",
+    "direction_degrees": 11.25,
+    "quadrant": "N",
+    "description": "北。北極近くの星の少ない空域。"
+  },
+  {
+    "id": 10,
+    "house_name": "Koʻolau",
+    "meaning": "北東象限",
+    "direction_degrees": 45.0,
+    "quadrant": "NE",
+    "description": "北東象限の名称。風上側。"
+  },
+  {
+    "id": 11,
+    "house_name": "Hoʻolua",
+    "meaning": "北西象限",
+    "direction_degrees": 315.0,
+    "quadrant": "NW",
+    "description": "北西象限の名称。"
+  },
+  {
+    "id": 12,
+    "house_name": "Kona",
+    "meaning": "南西象限",
+    "direction_degrees": 225.0,
+    "quadrant": "SW",
+    "description": "南西象限の名称。風下側。"
+  },
+  {
+    "id": 13,
+    "house_name": "Malanai",
+    "meaning": "南東象限",
+    "direction_degrees": 135.0,
+    "quadrant": "SE",
+    "description": "南東象限の名称。"
+  }
+]

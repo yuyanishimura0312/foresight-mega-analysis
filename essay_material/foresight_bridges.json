@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "wayfinding_concept": "Star Compass (32 houses)",
+    "foresight_concept": "PESTLE Analysis (6 categories)",
+    "connection_type": "structural_parallel",
+    "description": "地平線を32区画に分割して環境を構造化する↔社会環境を6カテゴリに分割して構造化する",
+    "strength": "strong"
+  },
+  {
+    "id": 2,
+    "wayfinding_concept": "Etak (moving reference island)",
+    "foresight_concept": "Outside-In Thinking / Scenario Planning",
+    "connection_type": "cognitive_parallel",
+    "description": "自分ではなく世界が動くという視点転換↔外部環境の変化から自組織を逆算する発想",
+    "strength": "strong"
+  },
+  {
+    "id": 3,
+    "wayfinding_concept": "Vision of the Island",
+    "foresight_concept": "Preferred Future / Normative Scenario",
+    "connection_type": "strategic_parallel",
+    "description": "到達すべき島のビジョンを常に保持↔望ましい未来像を設定し方向性を維持",
+    "strength": "strong"
+  },
+  {
+    "id": 4,
+    "wayfinding_concept": "Multi-signal Integration",
+    "foresight_concept": "Weak Signal Detection / Environmental Scanning",
+    "connection_type": "methodological_parallel",
+    "description": "星・うねり・風・鳥・雲を同時統合↔政治・経済・社会・技術の複数シグナルを統合",
+    "strength": "strong"
+  },
+  {
+    "id": 5,
+    "wayfinding_concept": "Adaptive Route Change",
+    "foresight_concept": "Adaptive Strategy / Agile Planning",
+    "connection_type": "strategic_parallel",
+    "description": "目的地は変えずルートを環境に応じて変更↔目標を維持しつつ手段を柔軟に適応",
+    "strength": "strong"
+  },
+  {
+    "id": 6,
+    "wayfinding_concept": "Swell Reading (body knowledge)",
+    "foresight_concept": "Tacit Knowledge / Intuitive Pattern Recognition",
+    "connection_type": "epistemological_parallel",
+    "description": "身体全体でうねりを感じ取る暗黙知↔データ以前の直感的パターン認識",
+    "strength": "medium"
+  },
+  {
+    "id": 7,
+    "wayfinding_concept": "Pwo Ceremony (knowledge transfer)",
+    "foresight_concept": "Organizational Knowledge Management",
+    "connection_type": "institutional_parallel",
+    "description": "師弟関係による暗黙知の世代間継承↔組織の暗黙知をどう次世代に伝えるか",
+    "strength": "medium"
+  },
+  {
+    "id": 8,
+    "wayfinding_concept": "Dead Reckoning (continuous update)",
+    "foresight_concept": "Real-time Environmental Scanning",
+    "connection_type": "operational_parallel",
+    "description": "速度×時間で位置を連続更新↔リアルタイムの環境モニタリングと状況把握",
+    "strength": "strong"
+  },
+  {
+    "id": 9,
+    "wayfinding_concept": "Bird Navigation (proxy signals)",
+    "foresight_concept": "Leading Indicators / Proxy Metrics",
+    "connection_type": "analytical_parallel",
+    "description": "鳥の行動から陸地を推測↔先行指標から将来の状態を推測",
+    "strength": "medium"
+  },
+  {
+    "id": 10,
+    "wayfinding_concept": "Wave Refraction (anomaly detection)",
+    "foresight_concept": "Structural Change Signal Detection",
+    "connection_type": "analytical_parallel",
+    "description": "通常と異なる波紋から島を検出↔正常パターンからの逸脱を構造変化の兆候として読む",
+    "strength": "strong"
+  },
+  {
+    "id": 11,
+    "wayfinding_concept": "Collective Memory (oral tradition)",
+    "foresight_concept": "CLA Myth/Metaphor Layer",
+    "connection_type": "deep_structural_parallel",
+    "description": "世代を超えた口承による航法知識の蓄積↔CLA最深層の神話・メタファーに蓄積された文明の記憶",
+    "strength": "strong"
+  },
+  {
+    "id": 12,
+    "wayfinding_concept": "10 Million Navigators (democratization)",
+    "foresight_concept": "Foresight Literacy / Futures Literacy",
+    "connection_type": "visionary_parallel",
+    "description": "航法の精神を広く市民に↔未来を読む能力の民主化（UNESCO Futures Literacy）",
+    "strength": "strong"
+  },
+  {
+    "id": 13,
+    "wayfinding_concept": "Mālama Honua (care for Earth)",
+    "foresight_concept": "Sustainability-oriented Foresight",
+    "connection_type": "ethical_parallel",
+    "description": "地球の世話人としての責任↔持続可能性を中心に据えたフォーサイト実践",
+    "strength": "strong"
+  },
+  {
+    "id": 14,
+    "wayfinding_concept": "Cloud Reading (indirect inference)",
+    "foresight_concept": "Second-order Effect Analysis",
+    "connection_type": "analytical_parallel",
+    "description": "雲底の色変化から見えない島を推測↔一次的影響から間接的・二次的影響を推論",
+    "strength": "medium"
+  },
+  {
+    "id": 15,
+    "wayfinding_concept": "Hawaiian Renaissance (cultural revival)",
+    "foresight_concept": "Cultural Foresight / Heritage-based Innovation",
+    "connection_type": "cultural_parallel",
+    "description": "過去の知恵の復活が未来の可能性を拡張↔文化遺産に基づくイノベーション",
+    "strength": "medium"
+  }
+]

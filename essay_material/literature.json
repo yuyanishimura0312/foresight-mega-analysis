@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "title": "We, the Navigators: The Ancient Art of Landfinding in the Pacific",
+    "author": "David Lewis",
+    "year": 1972,
+    "type": "book",
+    "publisher": "University of Hawai'i Press",
+    "description": "太平洋の伝統航法を体系的に記録した最初の学術書。エタク概念を西洋世界に紹介。",
+    "relevance": "太平洋航法研究の金字塔。認知科学・人類学の基礎文献。",
+    "doi": null
+  },
+  {
+    "id": 2,
+    "title": "An Ocean in Mind",
+    "author": "Will Kyselka",
+    "year": 1987,
+    "type": "book",
+    "publisher": "University of Hawai'i Press",
+    "description": "トンプソンのタヒチ航海準備とビショップ博物館での星の研究を詳述。",
+    "relevance": "知識の習得・活用・伝達の認識論的問い。",
+    "doi": null
+  },
+  {
+    "id": 3,
+    "title": "Voyage of Rediscovery",
+    "author": "Ben Finney",
+    "year": 1994,
+    "type": "book",
+    "publisher": "University of California Press",
+    "description": "1985-87年航海の詳細な記録。実験人類学の先駆的著作。",
+    "relevance": "先住民知識の科学的検証方法論。",
+    "doi": null
+  },
+  {
+    "id": 4,
+    "title": "Hawaiki Rising: Hōkūle'a, Nainoa Thompson, and the Hawaiian Renaissance",
+    "author": "Sam Low",
+    "year": 2013,
+    "type": "book",
+    "publisher": "University of Hawai'i Press",
+    "description": "ホークレアと航法師たちの最も包括的な歴史書。",
+    "relevance": "文化復興と知識復活の物語。フォーサイトの文化的基盤。",
+    "doi": null
+  },
+  {
+    "id": 5,
+    "title": "Wayfinding Leadership: Ground-breaking Wisdom for Developing Leaders",
+    "author": "Chellie Spiller, Hoturoa Barclay-Kerr, John Panoho",
+    "year": 2015,
+    "type": "book",
+    "publisher": "Huia Publishing",
+    "description": "マオリの先住民知識とリーダーシップ開発を統合。",
+    "relevance": "ウェイファインディング→組織リーダーシップの直接的応用。",
+    "doi": null
+  },
+  {
+    "id": 6,
+    "title": "Mālama Honua: Hōkūle'a — A Voyage of Hope",
+    "author": "Jennifer Allen et al.",
+    "year": 2017,
+    "type": "book",
+    "publisher": "Patagonia",
+    "description": "マーラマ・ホヌア世界航海の記録写真集。",
+    "relevance": "環境保全とウェイファインディングの統合実践。",
+    "doi": null
+  },
+  {
+    "id": 7,
+    "title": "Wayfinding across ocean and tundra: what traditional cultures teach us about navigation",
+    "author": "Multiple authors",
+    "year": 2023,
+    "type": "paper",
+    "publisher": "Trends in Cognitive Sciences",
+    "description": "認知科学の観点から伝統航法を分析。",
+    "relevance": "人間の空間認知と環境知覚の科学的根拠。",
+    "doi": null
+  },
+  {
+    "id": 8,
+    "title": "Approaching the future: Blueprinting and Wayfinding in corporate foresight enactment",
+    "author": "Multiple authors",
+    "year": 2026,
+    "type": "paper",
+    "publisher": "Technological Forecasting & Social Change",
+    "description": "ウェイファインディング概念を企業フォーサイトに応用。Blueprinting vs Wayfinding。",
+    "relevance": "フォーサイトとウェイファインディングの直接的学術接続。最新研究。",
+    "doi": null
+  },
+  {
+    "id": 9,
+    "title": "The Star Compass by Nainoa Thompson",
+    "author": "Nainoa Thompson",
+    "year": null,
+    "type": "article",
+    "publisher": "Polynesian Voyaging Society",
+    "description": "トンプソン自身による星のコンパスの解説。32の家の命名と意味。",
+    "relevance": "実践者自身による知識の体系化。",
+    "doi": null
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Star Compass",
+    "name_ja": "星のコンパス",
+    "category": "navigation",
+    "description": "地平線を32の「家」に分割する精神的方位システム。各家は11.25度。物理的計器ではなく頭の中に構築。",
+    "how_it_works": "数百の星の昇沈位置を記憶し、夜間でも方位を維持。4基本方位を基点に、星の名前で区画を命名。",
+    "foresight_analogy": "PESTLE分析の多次元フレームワーク。複数カテゴリで環境を構造化する精神モデル。",
+    "difficulty": "expert"
+  },
+  {
+    "id": 2,
+    "name": "Etak",
+    "name_ja": "エタク",
+    "category": "cognitive_framework",
+    "description": "カヌーは動かず世界が動くという認知的視点転換。参照島の方位変化で現在位置を把握。",
+    "how_it_works": "目的地でも出発地でもない参照島を選び、旅の進行に伴う方位角の変化を追跡して現在位置を把握する。",
+    "foresight_analogy": "アウトサイド・イン思考。環境変化から自組織の位置を逆算するシナリオプランニングの世界観。",
+    "difficulty": "expert"
+  },
+  {
+    "id": 3,
+    "name": "Zenith Star Navigation",
+    "name_ja": "天頂星航法",
+    "category": "navigation",
+    "description": "特定の島の真上を通過する星を利用した緯度航法。",
+    "how_it_works": "アークトゥルスはハワイの緯度（約20度N）の真上を通る。この星が天頂に来る緯度まで移動し目的地へ。",
+    "foresight_analogy": "ベンチマーキング。既知の参照点に対する自己の位置を確認する手法。",
+    "difficulty": "intermediate"
+  },
+  {
+    "id": 4,
+    "name": "Swell Reading",
+    "name_ja": "うねり読み",
+    "category": "navigation",
+    "description": "海洋のうねりのパターンから方位を判断する身体的技術。",
+    "how_it_works": "船底に横たわり複数方向のうねりを身体全体で感じ取る。うねりは遠方の気象で生成され安定方向に伝播。",
+    "foresight_analogy": "弱いシグナルの身体的感知。データ以前の直感的パターン認識。",
+    "difficulty": "expert"
+  },
+  {
+    "id": 5,
+    "name": "Dead Reckoning",
+    "name_ja": "推測航法",
+    "category": "navigation",
+    "description": "星・太陽・うねり・風を統合し、速度と時間から位置を連続的に計算。",
+    "how_it_works": "脳内の海図で参照島との相対位置を常時更新。ノイズの多い情報環境での複数信号同時処理。",
+    "foresight_analogy": "リアルタイムの環境スキャニング。複数ソースの統合によるポジション・アップデート。",
+    "difficulty": "expert"
+  },
+  {
+    "id": 6,
+    "name": "Bird Navigation",
+    "name_ja": "鳥の行動読み",
+    "category": "environmental",
+    "description": "鳥の飛行パターンから陸地の方向と距離を判断。",
+    "how_it_works": "日中は島→海、夜は海→島。グンカンドリ＝近くに陸地。渡り鳥のルートを航路として利用。",
+    "foresight_analogy": "先行指標の読解。他のアクターの行動から環境変化を推測する。",
+    "difficulty": "intermediate"
+  },
+  {
+    "id": 7,
+    "name": "Cloud Reading",
+    "name_ja": "雲読み",
+    "category": "environmental",
+    "description": "雲の形状・色・停留パターンから島の存在を判断。",
+    "how_it_works": "高い島の上に積乱雲が停留。礁湖の水色が雲底に反射し緑/青に見える。",
+    "foresight_analogy": "間接的シグナルの解釈。直接見えない対象を、その影響から推測する。",
+    "difficulty": "intermediate"
+  },
+  {
+    "id": 8,
+    "name": "Phosphorescence Reading",
+    "name_ja": "リン光観察",
+    "category": "environmental",
+    "description": "深海のリン光パターンから陸地接近を判断。",
+    "how_it_works": "特定のリン光パターンが島の近海を示す。海中の稲妻のような光が陸地接近の指標。",
+    "foresight_analogy": "微弱シグナルの検出。通常は見逃す微細な変化から重要情報を抽出。",
+    "difficulty": "advanced"
+  },
+  {
+    "id": 9,
+    "name": "Wave Refraction Reading",
+    "name_ja": "波屈折読み",
+    "category": "environmental",
+    "description": "島によるうねりの遮断・屈折パターンから島の存在を検出。",
+    "how_it_works": "通常と異なる波紋が島の存在を告げる。複数方向のうねりの干渉パターンを解読。",
+    "foresight_analogy": "構造的変化の前兆検出。正常パターンからの逸脱を構造的変化のシグナルとして読む。",
+    "difficulty": "advanced"
+  },
+  {
+    "id": 10,
+    "name": "Latitude Sailing",
+    "name_ja": "緯度航法",
+    "category": "navigation",
+    "description": "目的地と同じ緯度まで移動してから東西に航行する手法。",
+    "how_it_works": "天頂星で緯度を確認し、目的地の緯度に達したら風に乗って東西移動。",
+    "foresight_analogy": "段階的アプローチ。大きな不確実性を分解し、確実な中間目標を経由して到達する戦略。",
+    "difficulty": "intermediate"
+  },
+  {
+    "id": 11,
+    "name": "Wind Pattern Analysis",
+    "name_ja": "風向変化感知",
+    "category": "environmental",
+    "description": "季節風と局所風の変化パターンから位置と天候を判断。",
+    "how_it_works": "貿易風の安定性を利用しつつ、局所的な風の変化から島や天候変化を予測。",
+    "foresight_analogy": "マクロトレンドとミクロシグナルの統合。大きな構造的力と局所的変動の関係を読む。",
+    "difficulty": "intermediate"
+  },
+  {
+    "id": 12,
+    "name": "Dawn/Dusk Sky Reading",
+    "name_ja": "薄明空読み",
+    "category": "navigation",
+    "description": "夜明け前と日没後の薄明光から方位と天候を判断。",
+    "how_it_works": "特定の色のグラデーションから東西方向を精密に決定。大気の状態も判断。",
+    "foresight_analogy": "トランジションポイントの分析。変化の境界で最も多くの情報が得られる。",
+    "difficulty": "intermediate"
+  }
+]

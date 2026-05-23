@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Hōkūleʻa",
+    "name_ja": "ホークレア",
+    "type": "wa'a kaulua (double-hull)",
+    "length_ft": 62.3,
+    "launched_year": 1975,
+    "origin": "Hawaii",
+    "description": "ポリネシア航海協会の旗艦。古代設計を現代材料で再現。名前は「星の喜び」（アークトゥルス）。"
+  },
+  {
+    "id": 2,
+    "name": "Hikianalia",
+    "name_ja": "ヒキアナリア",
+    "type": "wa'a kaulua (double-hull)",
+    "length_ft": 72.0,
+    "launched_year": 2012,
+    "origin": "Hawaii",
+    "description": "ホークレアの姉妹船。マーラマ・ホヌア航海で伴走。太陽光発電による現代航法装備も搭載。"
+  },
+  {
+    "id": 3,
+    "name": "Alingano Maisu",
+    "name_ja": "アリンガノ・マイス",
+    "type": "wa'a kaulua (double-hull)",
+    "length_ft": null,
+    "launched_year": 2007,
+    "origin": "Satawal/Hawaii",
+    "description": "マウ・ピアイルグとトンプソンの友情を象徴するカヌー。サタワル島への航海に使用。"
+  },
+  {
+    "id": 4,
+    "name": "Hawai'iloa",
+    "name_ja": "ハワイイロア",
+    "type": "wa'a kaulua (double-hull)",
+    "length_ft": 57.0,
+    "launched_year": 1993,
+    "origin": "Hawaii",
+    "description": "伝統素材（コア材・パンダナス）で建造された本格的古代カヌー。"
+  }
+]
